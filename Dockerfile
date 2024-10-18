@@ -8,6 +8,10 @@ FROM node:22-alpine
 
 WORKDIR /home/node
 
+ARG REACT_APP_ID
+ARG REACT_APP_DATASET
+ARG REACT_APP_API_VERSION
+
 COPY . .
 RUN npm run setup
 RUN npm run build

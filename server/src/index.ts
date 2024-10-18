@@ -11,5 +11,6 @@ app.use("/api/stripe", stripeRouter);
 setStaticFolder(app);
 
 app.listen(SERVER_PORT, () => {
+  console.log(process.env);
   console.info(`>>> ${SERVER_PORT}`);
 });
