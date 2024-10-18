@@ -7,7 +7,7 @@ export const StyledShop = styled.div`
   padding: 24px;
 `;
 
-export const ShopItem = styled.div`
+export const StyledShopItem = styled.div`
   padding: 24px;
   display: grid;
   grid-template-columns: 1fr;

@@ -23,4 +23,8 @@ export const router = createBrowserRouter([
     path: Pages.SHOP,
     element: <Shop />,
   },
+  {
+    path: Pages.SHOP_RESULT,
+    element: <Shop />,
+  },
 ]);

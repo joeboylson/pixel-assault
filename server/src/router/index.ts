@@ -1,2 +1,2 @@
-export * from "./authenticationRouter";
+export * from "./stripeRouter";
 export * from "./static";

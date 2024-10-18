@@ -1,3 +1,5 @@
+import urlBuilder from "@sanity/image-url";
+import { SanityImageSource } from "@sanity/asset-utils";
 import { createClient, type ClientConfig } from "@sanity/client";
 
 const sanityConfig: ClientConfig = {
@@ -8,3 +10,12 @@ const sanityConfig: ClientConfig = {
 };
 
 export const sanityClient = createClient(sanityConfig);
+
+export const makeImageUrl = (sanityImageSource: SanityImageSource) => {
+  return urlBuilder(sanityClient)
+    .image(sanityImageSource)
+    .width(800)
+    .fit("max")
+    .auto("format")
+    .url();
+};

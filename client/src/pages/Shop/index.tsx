@@ -1,11 +1,29 @@
-import Image from "../../components/Image";
-import { useAllProducts } from "../../hooks/useAllProducts";
 import PageWrapper from "../../layouts/PageWrapper";
-import { formatNumberToUSD } from "../../utils/number";
-import { ShopItem, StyledShop } from "./StyledComponents";
+import ShopItem from "./ShopItem";
+import Modal from "../../components/Modal";
+import { useAllProducts } from "../../hooks/useAllProducts";
+import { StyledShop } from "./StyledComponents";
+import { useNavigate, useParams } from "react-router-dom";
+import { Pages } from "../../enums";
+import { useShoppingCart } from "use-shopping-cart";
+import { LayoutValues } from "../../enums/layout";
 
 export function Shop() {
   const { loading, products } = useAllProducts();
+
+  const params = useParams();
+  const navigate = useNavigate();
+  const { clearCart } = useShoppingCart();
+  const { result } = params;
+
+  const showPostPurchaseModal = result === "success";
+
+  const handlePostPurchaseModalClose = () => {
+    setTimeout(() => {
+      navigate(Pages.SHOP);
+      clearCart();
+    }, LayoutValues.MODAL_TRANSITION_DURATION);
+  };
 
   return (
     <PageWrapper>
@@ -13,20 +31,16 @@ export function Shop() {
 
       <StyledShop>
         {products &&
-          products.map((product) => {
-            const _value = product.image?.asset;
-
-            return (
-              <ShopItem key={product._id}>
-                <h2>{product.name ?? "No Title"}</h2>
-                <p>{product.description}</p>
-                <p>{formatNumberToUSD((product.price ?? -1) / 100)}</p>
-
-                {_value && <Image value={_value} />}
-              </ShopItem>
-            );
-          })}
+          products.map((product) => (
+            <ShopItem key={product._id} product={product} />
+          ))}
       </StyledShop>
+
+      {showPostPurchaseModal && (
+        <Modal headless handleOnClose={handlePostPurchaseModalClose}>
+          <p>Thank you for your purchase!</p>
+        </Modal>
+      )}
     </PageWrapper>
   );
 }
