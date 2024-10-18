@@ -23,6 +23,15 @@ export function Home() {
       </Carousel>
       <h1>Home</h1>
       <div style={{ width: "100%" }}>
+        <br />
+        <br />
+        <br />
+        <br />
+        <p>{JSON.stringify(process.env)}</p>
+        <br />
+        <br />
+        <br />
+        <br />
         <p style={{ columnCount: 2 }}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi
           provident iure laboriosam iste corporis, molestias, fugit vero sequi

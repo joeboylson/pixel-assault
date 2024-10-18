@@ -14,7 +14,7 @@
     "dev": "env-cmd concurrently 'npm run dev-server' 'npm run dev-client' 'npm run dev-studio'",
     "build-server": "npm run --prefix server build",
     "build-client": "npm run --prefix client build",
-    "build": "env-cmd npm run build-client && npm run build-server",
+    "build": "npm run build-client && npm run build-server",
     "start": "npm run --prefix server start",
     "local-start": "env-cmd npm run --prefix server start",
     "clean": "rm -rf server/dist"
