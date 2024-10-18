@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { LayoutValues } from "../../enums/layout";
+import { MinimalButtonCSS } from "../MinimalButton";
 
 export const DialogWrapper = styled.div`
   width: 300vw;
@@ -38,6 +39,12 @@ export const Dialog = styled.div`
 
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: 36px 1fr;
   gap: 36px;
   align-content: start;
+`;
+
+export const DialogueExitButton = styled.button`
+  ${MinimalButtonCSS}
+  place-self: end;
 `;

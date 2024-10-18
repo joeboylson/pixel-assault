@@ -1,4 +1,8 @@
-import { CheckoutItemsWrapper, StyledCheckoutItem } from "./StyledComponents";
+import {
+  CheckoutItemsWrapper,
+  CheckoutModalBody,
+  StyledCheckoutItem,
+} from "./StyledComponents";
 import { isEmpty } from "lodash";
 import { useStripePayment } from "../../hooks/useStripePayment";
 import { useShoppingCart } from "use-shopping-cart";
@@ -13,25 +17,26 @@ export default function CheckoutButton() {
 
   return (
     <Modal buttonDisabled={noItemsInCart} buttonText="Checkout">
-      <h2>Review...</h2>
-      <p>Loading: {loading ? "Yes" : "No"}</p>
+      <CheckoutModalBody>
+        <h2>Review Products</h2>
 
-      {cartDetails && !noItemsInCart && (
-        <CheckoutItemsWrapper>
-          {cartEntries.map((cartEntry) => (
-            <CheckoutItem key={cartEntry.id} cartEntry={cartEntry} />
-          ))}
-        </CheckoutItemsWrapper>
-      )}
+        {cartDetails && !noItemsInCart && (
+          <CheckoutItemsWrapper>
+            {cartEntries.map((cartEntry) => (
+              <CheckoutItem key={cartEntry.id} cartEntry={cartEntry} />
+            ))}
+          </CheckoutItemsWrapper>
+        )}
 
-      <StyledCheckoutItem>
-        <button onClick={clearCart}>Clear Cart</button>
-        <button onClick={doStripeCheckout} disabled={loading}>
-          Continue to Payment
-        </button>
+        <StyledCheckoutItem>
+          <button onClick={clearCart}>Clear Cart</button>
+          <button onClick={doStripeCheckout} disabled={loading}>
+            Continue to Payment
+          </button>
 
-        <p>{formattedTotalPrice ?? "$0.00"}</p>
-      </StyledCheckoutItem>
+          <p>{formattedTotalPrice ?? "$0.00"}</p>
+        </StyledCheckoutItem>
+      </CheckoutModalBody>
     </Modal>
   );
 }

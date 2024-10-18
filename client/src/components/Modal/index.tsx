@@ -1,8 +1,9 @@
 import { MouseEvent } from "react";
 import { useToggle } from "../../hooks/useToggle";
-import { Dialog, DialogWrapper } from "./StyledComponents";
+import { Dialog, DialogueExitButton, DialogWrapper } from "./StyledComponents";
 import { compact } from "lodash";
 import { WithChildren } from "../../types";
+import { X } from "@phosphor-icons/react";
 
 type _props = WithChildren & {
   buttonText?: string;
@@ -46,7 +47,10 @@ export default function Modal({
 
       <DialogWrapper onClick={close} className={className}>
         <Dialog onClick={ignoreClick} className={className}>
-          {children}
+          <DialogueExitButton onClick={close} data-id="DialogueExitButton">
+            <X size={32} weight="duotone" />
+          </DialogueExitButton>
+          <div>{children}</div>
         </Dialog>
       </DialogWrapper>
     </>
