@@ -4,7 +4,7 @@ import { Dialog, DialogueExitButton, DialogWrapper } from "./StyledComponents";
 import { compact } from "lodash";
 import { WithChildren } from "../../types";
 import { X } from "@phosphor-icons/react";
-import { iconProps } from "../../theme";
+import { iconProps } from "../../theme/icon";
 
 type _props = WithChildren & {
   buttonText?: string;

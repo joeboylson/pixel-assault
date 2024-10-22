@@ -17,6 +17,10 @@ const StyledPageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+
+  * {
+    color: ${theme.TEXT_COLOR};
+  }
 `;
 
 const Header = styled.header`
@@ -25,7 +29,7 @@ const Header = styled.header`
   display: flex;
   align-items: center;
 
-  a {
+  > a {
     display: grid;
     place-items: center;
     padding-right: 12px;

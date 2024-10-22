@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { router } from "./router";
 import { RouterProvider } from "react-router-dom";
 import { CartProvider } from "use-shopping-cart";
-import { GlobalTheme } from "./theme";
+import { GlobalTheme } from "./theme/global";
 import PageTransitionWrapper from "./context/PageTransition";
 
 const root = ReactDOM.createRoot(

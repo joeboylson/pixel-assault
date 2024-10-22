@@ -5,7 +5,6 @@ import { CarouselPositions } from "../../enums/carousel";
 import { reorderArray } from "../../utils/array";
 import { SetTimeout } from "../../types/timeout";
 import { WithManyChildren } from "../../types";
-import { iconProps } from "../../theme";
 
 import {
   carouselAutoTransitionDelay,
@@ -16,6 +15,7 @@ import {
   NavigationButtonsWrapper,
   StyledCarousel,
 } from "./StyledComponents";
+import { iconProps } from "../../theme/icon";
 
 const { NEXT, PREVIOUS, NEUTRAL } = CarouselPositions;
 

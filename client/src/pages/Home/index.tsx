@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import Carousel from "../../components/Carousel";
 import { usePageTransitionContext } from "../../context/PageTransition";
 import PageMaxWithContainer from "../../layouts/PageMaxWidthContainer";
