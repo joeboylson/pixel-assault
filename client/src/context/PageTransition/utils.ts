@@ -1,21 +1,22 @@
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
+import { ColorThemes } from "../../enums/theme";
 
 // #region helpers
 export const _voidFunction = () => {};
-export const pageTransitionDuration = 1000;
+export const pageTransitionDuration = 300;
 // #endregion
 
 // #region context value type and default value
 export type PageTransitionContextValue = {
   isTransitioning: boolean;
   setIsTransitioning: Dispatch<SetStateAction<boolean>>;
-  doDefaultTransition: () => void;
+  changeTheme: (colorTheme: ColorThemes) => void;
 };
 
 const contextDefaultValue: PageTransitionContextValue = {
   isTransitioning: false,
   setIsTransitioning: _voidFunction,
-  doDefaultTransition: _voidFunction,
+  changeTheme: _voidFunction,
 };
 // #endregion
 

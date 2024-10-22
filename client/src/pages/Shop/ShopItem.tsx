@@ -1,10 +1,11 @@
 import { Product } from "../../types/sanity.types";
 import { formatNumberToUSD } from "../../utils/number";
-import { StyledShopItem } from "./StyledComponents";
+import { AddToCartButton, StyledShopItem } from "./StyledComponents";
 import Image from "../../components/Image";
 import { useShoppingCart } from "use-shopping-cart";
 import { Product as USCProduct } from "use-shopping-cart/core";
 import { makeImageUrl } from "../../utils/sanity";
+import { getTheme } from "../../theme";
 
 interface _props {
   product: Product;
@@ -12,8 +13,8 @@ interface _props {
 
 export default function ShopItem({ product }: _props) {
   const { addItem } = useShoppingCart();
-
   const imageValue = product.image?.asset;
+  const theme = getTheme();
 
   const handleAddToCart = () => {
     const _product: USCProduct = {
@@ -34,7 +35,16 @@ export default function ShopItem({ product }: _props) {
       <p>{formatNumberToUSD((product.price ?? -1) / 100)}</p>
 
       {imageValue && <Image value={imageValue} />}
-      <button onClick={handleAddToCart}>Add to Cart</button>
+
+      <AddToCartButton
+        style={{
+          backgroundColor: theme.ACCENT_1,
+          color: theme.ACCENT_1_TEXT_COLOR,
+        }}
+        onClick={handleAddToCart}
+      >
+        Add to Cart
+      </AddToCartButton>
     </StyledShopItem>
   );
 }

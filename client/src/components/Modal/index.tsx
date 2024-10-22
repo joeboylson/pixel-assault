@@ -5,9 +5,10 @@ import { compact } from "lodash";
 import { WithChildren } from "../../types";
 import { X } from "@phosphor-icons/react";
 import { iconProps } from "../../theme/icon";
+import MinimalButton from "../MinimalButton";
 
 type _props = WithChildren & {
-  buttonText?: string;
+  buttonChild?: React.ReactNode | React.ReactNode[];
   buttonDisabled?: boolean;
   handleOnClose?: () => void;
   headless?: boolean;
@@ -15,7 +16,7 @@ type _props = WithChildren & {
 
 export default function Modal({
   children,
-  buttonText,
+  buttonChild,
   buttonDisabled,
   handleOnClose,
   headless,
@@ -41,15 +42,15 @@ export default function Modal({
   return (
     <>
       {!headless && (
-        <button onClick={openDialog} disabled={buttonDisabled}>
-          {buttonText}
-        </button>
+        <MinimalButton onClick={openDialog} disabled={buttonDisabled}>
+          {buttonChild}
+        </MinimalButton>
       )}
 
       <DialogWrapper onClick={close} className={className}>
         <Dialog onClick={ignoreClick} className={className}>
           <DialogueExitButton onClick={close} data-id="DialogueExitButton">
-            <X {...iconProps} />
+            <X {...iconProps} color="#FFFFFF" />
           </DialogueExitButton>
           <div>{children}</div>
         </Dialog>

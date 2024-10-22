@@ -12,6 +12,7 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
+    <GlobalTheme />
     <CartProvider
       cartMode="checkout-session"
       stripe=""
@@ -19,7 +20,6 @@ root.render(
       shouldPersist
     >
       <PageTransitionWrapper>
-        <GlobalTheme />
         <RouterProvider router={router} />
       </PageTransitionWrapper>
     </CartProvider>

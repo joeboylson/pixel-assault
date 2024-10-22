@@ -1,6 +1,12 @@
 import { CartEntry } from "use-shopping-cart/core";
-import { StyledCheckoutItem } from "./StyledComponents";
+import {
+  CheckoutItemTitle,
+  PlusMinusButton,
+  StyledCheckoutItem,
+  StyledCheckoutItemContent,
+} from "./StyledComponents";
 import { useShoppingCart } from "use-shopping-cart";
+import { Plus, Minus } from "@phosphor-icons/react";
 
 interface _props {
   cartEntry: CartEntry;
@@ -16,13 +22,17 @@ export default function CheckoutItem({ cartEntry }: _props) {
     <StyledCheckoutItem>
       <img src={cartEntry.image} alt={cartEntry.image} />
 
-      <div>
-        <p>
+      <StyledCheckoutItemContent>
+        <CheckoutItemTitle>
           {cartEntry.name} (x{cartEntry.quantity})
-        </p>
-        <button onClick={handleIncrement}>+</button>
-        <button onClick={handleDecrement}>-</button>
-      </div>
+        </CheckoutItemTitle>
+        <PlusMinusButton onClick={handleIncrement}>
+          <Plus size={12} color={"#000000"} />
+        </PlusMinusButton>
+        <PlusMinusButton onClick={handleDecrement}>
+          <Minus size={12} color={"#000000"} />
+        </PlusMinusButton>
+      </StyledCheckoutItemContent>
 
       <p>{cartEntry.formattedValue}</p>
     </StyledCheckoutItem>

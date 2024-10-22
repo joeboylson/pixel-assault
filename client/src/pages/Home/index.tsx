@@ -5,8 +5,6 @@ import PageWrapper from "../../layouts/PageWrapper";
 import { getTheme } from "../../theme";
 
 export function Home() {
-  const { doDefaultTransition } = usePageTransitionContext();
-
   return (
     <PageWrapper>
       <Carousel>
@@ -29,7 +27,6 @@ export function Home() {
 
       <PageMaxWithContainer>
         <h1>Home</h1>
-        <button onClick={doDefaultTransition}>TEST</button>
         <div>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit odio,

@@ -7,6 +7,9 @@ import {
 } from "./utils";
 import { DefaultTransition } from "./StyledComponents";
 import { compact, first, sample } from "lodash";
+import { ColorThemes } from "../../enums/theme";
+import { TransitionChoreography } from "../../types/transition";
+import { doTransitionChoreography } from "../../utils/transition";
 
 enum Transitions {
   DEFAULT,
@@ -17,60 +20,26 @@ export default function PageTransitionWrapper({ children }: WithChildren) {
   const [isContentHidden, setIsContentHidden] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
-  const doDefaultTransition = () => {
+  const changeTheme = (colorTheme: ColorThemes) => {
     if (isTransitioning) return;
 
-    type ft = (() => void) | number;
-
-    const randomTheme = sample([
-      "default",
-      "mountain",
-      "silicon",
-      "mercenary",
-      "plains",
-    ]);
-
-    console.log(randomTheme);
-
-    const functions: ft[] = [
-      () => console.log("START"),
+    const c: TransitionChoreography = [
       () => setTransition(Transitions.DEFAULT),
       100,
       () => setIsTransitioning(true),
       pageTransitionDuration,
       () => setIsContentHidden(true),
-      10,
-      () => localStorage.setItem("theme", randomTheme),
-      1000,
+      1,
+      () => localStorage.setItem("theme", colorTheme),
+      1,
       () => setIsContentHidden(false),
       10,
       () => setIsTransitioning(false),
       pageTransitionDuration,
       () => setTransition(null),
-      () => console.log("END"),
     ];
 
-    const f = (fs: ft[] | undefined) => {
-      if (fs && fs.length > 0) {
-        const _f = first(fs);
-        if (_f) {
-          if (typeof _f === "function") {
-            _f();
-            fs.shift();
-            f(fs);
-          }
-
-          if (typeof _f === "number") {
-            setTimeout(() => {
-              fs.shift();
-              f(fs);
-            }, _f);
-          }
-        }
-      }
-    };
-
-    f(functions);
+    doTransitionChoreography(c);
   };
 
   const values = {
@@ -79,7 +48,7 @@ export default function PageTransitionWrapper({ children }: WithChildren) {
 
   const functions = {
     setIsTransitioning,
-    doDefaultTransition,
+    changeTheme,
   };
 
   const value = {
@@ -92,9 +61,7 @@ export default function PageTransitionWrapper({ children }: WithChildren) {
   return (
     <PageTransitionProvider value={value}>
       {transition === Transitions.DEFAULT && (
-        <DefaultTransition data-id="DefaultTransition" className={className}>
-          <h1>PAGE TRANSITION, OOOOOOOHHHHHH YEEEEEAAAAAAH</h1>
-        </DefaultTransition>
+        <DefaultTransition data-id="DefaultTransition" className={className} />
       )}
 
       {!isContentHidden && children}

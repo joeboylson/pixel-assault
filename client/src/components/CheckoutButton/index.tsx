@@ -1,6 +1,7 @@
 import {
   CheckoutItemsWrapper,
   CheckoutModalBody,
+  PlusMinusButton,
   StyledCheckoutItem,
 } from "./StyledComponents";
 import { isEmpty } from "lodash";
@@ -8,6 +9,8 @@ import { useStripePayment } from "../../hooks/useStripePayment";
 import { useShoppingCart } from "use-shopping-cart";
 import CheckoutItem from "./CheckoutItem";
 import Modal from "../Modal";
+import { iconProps } from "../../theme/icon";
+import { ShoppingCart } from "@phosphor-icons/react";
 
 export default function CheckoutButton() {
   const { formattedTotalPrice, cartDetails, clearCart } = useShoppingCart();
@@ -16,7 +19,10 @@ export default function CheckoutButton() {
   const noItemsInCart = isEmpty(cartEntries);
 
   return (
-    <Modal buttonDisabled={noItemsInCart} buttonText="Checkout">
+    <Modal
+      buttonDisabled={noItemsInCart}
+      buttonChild={<ShoppingCart {...iconProps} color={"#FFFFFF"} size={24} />}
+    >
       <CheckoutModalBody>
         <h2>Review Products</h2>
 
@@ -29,10 +35,10 @@ export default function CheckoutButton() {
         )}
 
         <StyledCheckoutItem>
-          <button onClick={clearCart}>Clear Cart</button>
-          <button onClick={doStripeCheckout} disabled={loading}>
+          <PlusMinusButton onClick={clearCart}>Clear Cart</PlusMinusButton>
+          <PlusMinusButton onClick={doStripeCheckout} disabled={loading}>
             Continue to Payment
-          </button>
+          </PlusMinusButton>
 
           <p>{formattedTotalPrice ?? "$0.00"}</p>
         </StyledCheckoutItem>

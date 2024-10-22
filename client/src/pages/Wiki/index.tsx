@@ -4,16 +4,11 @@ import { useMemo } from "react";
 import { PortableText } from "@portabletext/react";
 import { Link, useParams } from "react-router-dom";
 import { Pages } from "../../enums";
-import {
-  SelectedWikiPageWrapper,
-  StyledWiki,
-  WikiSideBar,
-} from "./StyledComponents";
+import { ActiveWikiPage, StyledWiki, WikiSideBar } from "./StyledComponents";
 import Image from "../../components/Image";
 
 export function Wiki() {
   const { loading, wikiPages } = useAllWikiPages();
-
   const { slug } = useParams();
 
   const selectedWikiPage = useMemo(() => {
@@ -41,7 +36,7 @@ export function Wiki() {
             })}
         </WikiSideBar>
 
-        <SelectedWikiPageWrapper>
+        <ActiveWikiPage>
           {selectedWikiPage && (
             <>
               <h2>{selectedWikiPage.title ?? "No Title"}</h2>
@@ -56,7 +51,7 @@ export function Wiki() {
               />
             </>
           )}
-        </SelectedWikiPageWrapper>
+        </ActiveWikiPage>
       </StyledWiki>
     </PageWrapper>
   );

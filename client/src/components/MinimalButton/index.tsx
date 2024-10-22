@@ -17,10 +17,13 @@ const StyledMinimalButton = styled.button`
 
 type _props = WithChildren & {
   onClick: (() => void) | ((event: React.MouseEvent<HTMLElement>) => void);
+  disabled?: boolean;
 };
 
-export default function MinimalButton({ onClick, children }: _props) {
+export default function MinimalButton({ onClick, children, disabled }: _props) {
   return (
-    <StyledMinimalButton onClick={onClick}>{children}</StyledMinimalButton>
+    <StyledMinimalButton onClick={onClick} disabled={disabled}>
+      {children}
+    </StyledMinimalButton>
   );
 }

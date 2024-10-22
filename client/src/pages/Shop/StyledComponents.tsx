@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MinimalButtonCSS } from "../../components/MinimalButton";
 
 export const StyledShop = styled.div`
   display: grid;
@@ -12,6 +13,11 @@ export const StyledShopItem = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   gap: 8px;
+`;
 
-  border: 1px solid #ddd;
+export const AddToCartButton = styled.button`
+  ${MinimalButtonCSS}
+
+  padding: 8px 24px;
+  border-radius: 8px;
 `;
