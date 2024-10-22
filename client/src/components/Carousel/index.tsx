@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { compact, first, last, range, take, takeRight } from "lodash";
-import { CaretRight, CaretLeft, IconProps } from "@phosphor-icons/react";
+import { CaretRight, CaretLeft } from "@phosphor-icons/react";
 import { CarouselPositions } from "../../enums/carousel";
 import { reorderArray } from "../../utils/array";
 import { SetTimeout } from "../../types/timeout";
 import { WithManyChildren } from "../../types";
+import { iconProps } from "../../theme";
 
 import {
   carouselAutoTransitionDelay,
@@ -17,11 +18,6 @@ import {
 } from "./StyledComponents";
 
 const { NEXT, PREVIOUS, NEUTRAL } = CarouselPositions;
-
-const phosphorIconProps: IconProps = {
-  size: 32,
-  weight: "duotone",
-};
 
 /**
  * Carousel must have at least 2 children
@@ -138,11 +134,11 @@ export default function Carousel({ children }: WithManyChildren) {
           <span />
         ) : (
           <NavigationButton onClick={prev} disabled={buttonsDisabled}>
-            <CaretLeft {...phosphorIconProps} />
+            <CaretLeft {...iconProps} />
           </NavigationButton>
         )}
         <NavigationButton onClick={next} disabled={buttonsDisabled}>
-          <CaretRight {...phosphorIconProps} />
+          <CaretRight {...iconProps} />
         </NavigationButton>
       </NavigationButtonsWrapper>
     </StyledCarousel>

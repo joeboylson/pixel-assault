@@ -7,6 +7,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Pages } from "../../enums";
 import { useShoppingCart } from "use-shopping-cart";
 import { LayoutValues } from "../../enums/layout";
+import PageMaxWithContainer from "../../layouts/PageMaxWidthContainer";
 
 export function Shop() {
   const { loading, products } = useAllProducts();
@@ -27,20 +28,22 @@ export function Shop() {
 
   return (
     <PageWrapper>
-      {loading && <p>loading...</p>}
+      <PageMaxWithContainer>
+        {loading && <p>loading...</p>}
 
-      <StyledShop>
-        {products &&
-          products.map((product) => (
-            <ShopItem key={product._id} product={product} />
-          ))}
-      </StyledShop>
+        <StyledShop>
+          {products &&
+            products.map((product) => (
+              <ShopItem key={product._id} product={product} />
+            ))}
+        </StyledShop>
 
-      {showPostPurchaseModal && (
-        <Modal headless handleOnClose={handlePostPurchaseModalClose}>
-          <p>Thank you for your purchase!</p>
-        </Modal>
-      )}
+        {showPostPurchaseModal && (
+          <Modal headless handleOnClose={handlePostPurchaseModalClose}>
+            <p>Thank you for your purchase!</p>
+          </Modal>
+        )}
+      </PageMaxWithContainer>
     </PageWrapper>
   );
 }

@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import { LayoutValues } from "../../enums/layout";
 import { useShoppingCart } from "use-shopping-cart";
 import CheckoutButton from "../../components/CheckoutButton";
+import { getTheme } from "../../theme";
 
 const { HEADER_HEIGHT, FOOTER_HEIGHT } = LayoutValues;
+const theme = getTheme();
 
 const StyledPageWrapper = styled.div`
   display: grid;
@@ -18,7 +20,7 @@ const StyledPageWrapper = styled.div`
 `;
 
 const Header = styled.header`
-  background-color: ghostwhite;
+  background-color: ${theme.BACKGROUND_COLOR_DARKER};
   padding: 0 24px;
   display: flex;
   align-items: center;
@@ -34,7 +36,7 @@ const Header = styled.header`
 const Content = styled.div``;
 
 const Footer = styled.footer`
-  background-color: ghostwhite;
+  background-color: ${theme.BACKGROUND_COLOR_DARKER};
   padding: 0 24px;
   display: grid;
   content-align: center;
@@ -44,7 +46,10 @@ export default function PageWrapper({ children }: WithChildren) {
   const cart = useShoppingCart();
 
   return (
-    <StyledPageWrapper data-id="PageWrapper">
+    <StyledPageWrapper
+      data-id="PageWrapper"
+      style={{ backgroundColor: getTheme().BACKGROUND_COLOR }}
+    >
       <Header>
         <Link to={Pages.HOME}>{Pages.HOME.replaceAll("/", "")}</Link>
         <Link to={Pages.SHOP}>{Pages.SHOP.replaceAll("/", "")}</Link>

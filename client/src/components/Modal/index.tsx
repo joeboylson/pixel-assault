@@ -4,6 +4,7 @@ import { Dialog, DialogueExitButton, DialogWrapper } from "./StyledComponents";
 import { compact } from "lodash";
 import { WithChildren } from "../../types";
 import { X } from "@phosphor-icons/react";
+import { iconProps } from "../../theme";
 
 type _props = WithChildren & {
   buttonText?: string;
@@ -48,7 +49,7 @@ export default function Modal({
       <DialogWrapper onClick={close} className={className}>
         <Dialog onClick={ignoreClick} className={className}>
           <DialogueExitButton onClick={close} data-id="DialogueExitButton">
-            <X size={32} weight="duotone" />
+            <X {...iconProps} />
           </DialogueExitButton>
           <div>{children}</div>
         </Dialog>
