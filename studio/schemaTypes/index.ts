@@ -1,13 +1,19 @@
 import blockContent from './blockContent'
 import product from './product'
-import wikiPage from './wikiPage'
-import wikiPageCategory from './wikiPageCategory'
+import militaryUnitType from './militaryUnitType'
+import faction from './faction'
+import card from './card'
+import storyPage from './storyPage'
 
 export const schemaTypes = [
-  // Document types
+  // Products
   product,
-  wikiPage,
-  wikiPageCategory,
+
+  // Wiki
+  militaryUnitType,
+  faction,
+  card,
+  storyPage,
 
   // Other types
   blockContent,
