@@ -9,7 +9,6 @@ import { useStripePayment } from "../../hooks/useStripePayment";
 import { useShoppingCart } from "use-shopping-cart";
 import CheckoutItem from "./CheckoutItem";
 import Modal from "../Modal";
-import { iconProps } from "../../theme/icon";
 import { ShoppingCart } from "@phosphor-icons/react";
 
 export default function CheckoutButton() {
@@ -21,7 +20,7 @@ export default function CheckoutButton() {
   return (
     <Modal
       buttonDisabled={noItemsInCart}
-      buttonChild={<ShoppingCart {...iconProps} color={"#FFFFFF"} size={24} />}
+      buttonChild={<ShoppingCart color={"#FFFFFF"} size={24} />}
     >
       <CheckoutModalBody>
         <h2>Review Products</h2>

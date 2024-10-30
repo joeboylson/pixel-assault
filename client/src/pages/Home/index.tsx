@@ -1,10 +1,13 @@
+import { useEffect } from "react";
 import Carousel from "../../components/Carousel";
-import { usePageTransitionContext } from "../../context/PageTransition";
+import { useThemeContext } from "../../context/ThemeContext";
 import PageMaxWithContainer from "../../layouts/PageMaxWidthContainer";
 import PageWrapper from "../../layouts/PageWrapper";
-import { getTheme } from "../../theme";
 
 export function Home() {
+  const { useDefaultTheme } = useThemeContext();
+  useEffect(useDefaultTheme, [useDefaultTheme]);
+
   return (
     <PageWrapper>
       <Carousel>
@@ -32,8 +35,6 @@ export function Home() {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit odio,
             modi quod ratione quae repudiandae in quisquam quidem eos ab?
           </p>
-          <h1 style={{ color: getTheme().ACCENT_1 }}>Accent Color 1</h1>
-          <h1 style={{ color: getTheme().ACCENT_2 }}>Accent Color 2</h1>
         </div>
       </PageMaxWithContainer>
     </PageWrapper>

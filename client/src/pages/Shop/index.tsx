@@ -8,9 +8,14 @@ import { Pages } from "../../enums";
 import { useShoppingCart } from "use-shopping-cart";
 import { LayoutValues } from "../../enums/layout";
 import PageMaxWithContainer from "../../layouts/PageMaxWidthContainer";
+import { useThemeContext } from "../../context/ThemeContext";
+import { useEffect } from "react";
 
 export function Shop() {
   const { loading, products } = useAllProducts();
+
+  const { useDefaultTheme } = useThemeContext();
+  useEffect(useDefaultTheme, [useDefaultTheme]);
 
   const params = useParams();
   const navigate = useNavigate();

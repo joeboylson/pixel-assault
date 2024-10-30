@@ -15,7 +15,6 @@ import {
   NavigationButtonsWrapper,
   StyledCarousel,
 } from "./StyledComponents";
-import { iconProps } from "../../theme/icon";
 
 const { NEXT, PREVIOUS, NEUTRAL } = CarouselPositions;
 
@@ -134,11 +133,11 @@ export default function Carousel({ children }: WithManyChildren) {
           <span />
         ) : (
           <NavigationButton onClick={prev} disabled={buttonsDisabled}>
-            <CaretLeft {...iconProps} />
+            <CaretLeft />
           </NavigationButton>
         )}
         <NavigationButton onClick={next} disabled={buttonsDisabled}>
-          <CaretRight {...iconProps} />
+          <CaretRight />
         </NavigationButton>
       </NavigationButtonsWrapper>
     </StyledCarousel>

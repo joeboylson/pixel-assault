@@ -20,4 +20,6 @@ export const AddToCartButton = styled.button`
 
   padding: 8px 24px;
   border-radius: 8px;
+  background-color: var(--themeAccent1);
+  color: var(--themeBackground);
 `;

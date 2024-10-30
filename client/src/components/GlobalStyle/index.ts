@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalTheme = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
     padding: 0;
@@ -24,6 +24,19 @@ export const GlobalTheme = createGlobalStyle`
   p, b, i, button {
     font-size: 16px;
   }
+
+  a {
+    text-decoration: none;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--themeAccent1);
+      * {
+      color: var(--themeAccent1);
+      }
+    }
+  }
+
 
   h3 {
     font-size: 21px;

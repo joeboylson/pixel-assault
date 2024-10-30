@@ -1,11 +1,9 @@
 import styled from "styled-components";
 import { WithChildren } from "../../types";
 import { LayoutValues } from "../../enums/layout";
-import { getTheme } from "../../theme";
 import Header from "../Header";
 
 const { HEADER_HEIGHT, FOOTER_HEIGHT } = LayoutValues;
-const theme = getTheme();
 
 const StyledPageWrapper = styled.div`
   display: grid;
@@ -14,9 +12,10 @@ const StyledPageWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   overflow-x: hidden;
+  background-color: var(--themeBackground);
 
   * {
-    color: ${theme.TEXT_COLOR};
+    color: var(--themeText);
   }
 `;
 
@@ -26,24 +25,17 @@ const Footer = styled.footer`
   padding: 0 24px;
   display: grid;
   align-content: center;
+  background-color: var(--themeBackground);
 `;
 
 export default function PageWrapper({ children }: WithChildren) {
-  const _theme = getTheme();
-
   return (
-    <StyledPageWrapper
-      data-id="PageWrapper"
-      style={{ backgroundColor: _theme.BACKGROUND_COLOR }}
-    >
+    <StyledPageWrapper data-id="PageWrapper">
       <Header />
 
       <Content data-id="PageWrapper.Content">{children}</Content>
 
-      <Footer
-        data-id="Footer"
-        style={{ backgroundColor: _theme.BACKGROUND_COLOR }}
-      >
+      <Footer data-id="Footer">
         <p>This is a footer element</p>
       </Footer>
     </StyledPageWrapper>

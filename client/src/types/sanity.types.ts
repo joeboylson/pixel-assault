@@ -101,22 +101,77 @@ export type BlockContent = Array<
     }
 >
 
-export type WikiPage = {
+export type StoryPage = {
   _id: string
-  _type: 'wikiPage'
+  _type: 'storyPage'
   _createdAt: string
   _updatedAt: string
   _rev: string
   title?: string
   slug?: Slug
   content?: BlockContent
-  externalId?: number
-  relatedWikiPages?: {
+}
+
+export type Card = {
+  _id: string
+  _type: 'card'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
+  cardId?: number
+  image?: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+  }
+  relatedFaction?: {
     _ref: string
     _type: 'reference'
     _weak?: boolean
-    [internalGroqTypeReferenceTo]?: 'wikiPage'
+    [internalGroqTypeReferenceTo]?: 'faction'
   }
+  relatedMilitatyUnitType?: {
+    _ref: string
+    _type: 'reference'
+    _weak?: boolean
+    [internalGroqTypeReferenceTo]?: 'militaryUnitType'
+  }
+  is_commander?: boolean
+  cost?: number
+  actionEconomy?: string
+  lore?: BlockContent
+  behindTheScenes?: BlockContent
+}
+
+export type Faction = {
+  _id: string
+  _type: 'faction'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
+  colorPageBackground?: Color
+  colorAccentOne?: Color
+  colorAccentTwo?: Color
+}
+
+export type MilitaryUnitType = {
+  _id: string
+  _type: 'militaryUnitType'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+  slug?: Slug
 }
 
 export type Slug = {
@@ -204,6 +259,39 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
+export type Color = {
+  _type: 'color'
+  hex?: string
+  alpha?: number
+  hsl?: HslaColor
+  hsv?: HsvaColor
+  rgb?: RgbaColor
+}
+
+export type RgbaColor = {
+  _type: 'rgbaColor'
+  r?: number
+  g?: number
+  b?: number
+  a?: number
+}
+
+export type HsvaColor = {
+  _type: 'hsvaColor'
+  h?: number
+  s?: number
+  v?: number
+  a?: number
+}
+
+export type HslaColor = {
+  _type: 'hslaColor'
+  h?: number
+  s?: number
+  l?: number
+  a?: number
+}
+
 export type AllSanitySchemaTypes =
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -211,7 +299,10 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | Geopoint
   | BlockContent
-  | WikiPage
+  | StoryPage
+  | Card
+  | Faction
+  | MilitaryUnitType
   | Slug
   | Product
   | SanityImageCrop
@@ -219,4 +310,8 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | Color
+  | RgbaColor
+  | HsvaColor
+  | HslaColor
 export declare const internalGroqTypeReferenceTo: unique symbol

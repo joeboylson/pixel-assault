@@ -3,25 +3,28 @@ import ReactDOM from "react-dom/client";
 import { router } from "./router";
 import { RouterProvider } from "react-router-dom";
 import { CartProvider } from "use-shopping-cart";
-import { GlobalTheme } from "./theme/global";
-import PageTransitionWrapper from "./context/PageTransition";
+import PageTransitionWrapper from "./context/PageTransitionContext";
+import { GlobalStyle } from "./components/GlobalStyle";
+import ThemeWrapper from "./context/ThemeContext";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
 root.render(
-  <React.StrictMode>
-    <GlobalTheme />
-    <CartProvider
-      cartMode="checkout-session"
-      stripe=""
-      currency="USD"
-      shouldPersist
-    >
-      <PageTransitionWrapper>
-        <RouterProvider router={router} />
-      </PageTransitionWrapper>
-    </CartProvider>
-  </React.StrictMode>
+  <ThemeWrapper>
+    <React.StrictMode>
+      <GlobalStyle />
+      <CartProvider
+        cartMode="checkout-session"
+        stripe=""
+        currency="USD"
+        shouldPersist
+      >
+        <PageTransitionWrapper>
+          <RouterProvider router={router} />
+        </PageTransitionWrapper>
+      </CartProvider>
+    </React.StrictMode>
+  </ThemeWrapper>
 );
