@@ -3,6 +3,7 @@ import { camelCaseToWords } from "../../types/string";
 import { NavLink } from "react-router-dom";
 import { Pages } from "../../enums";
 import styled from "styled-components";
+import { SkeletonWikiSideBar } from "./StyledComponents";
 
 export const StyledWikiSideBar = styled.div`
   display: grid;
@@ -24,7 +25,7 @@ export function WikiSideBar() {
 
   return (
     <StyledWikiSideBar>
-      {loading && <p>loading...</p>}
+      {loading && <SkeletonWikiSideBar />}
 
       {documentsByType &&
         Object.entries(documentsByType).map(([typeLabel, documentsOfType]) => {
