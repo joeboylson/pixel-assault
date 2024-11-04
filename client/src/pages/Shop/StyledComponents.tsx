@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { MinimalButtonCSS } from "../../components/MinimalButton";
 import { WithBackgroundColorTransitionCSS } from "../../utils/transition";
+import { SkeletonBlock, SkeletonTextLine } from "../../components/Skeleton";
 
 export const StyledShop = styled.div`
   display: grid;
@@ -25,3 +26,28 @@ export const AddToCartButton = styled.button`
   background-color: var(--themeAccent1);
   color: var(--themeBackground);
 `;
+
+export function SkeletonProduct() {
+  return (
+    <StyledShopItem>
+      <SkeletonBlock width="80%" height="39px" />
+      <SkeletonTextLine length={24} />
+      <SkeletonTextLine length={6} />
+      <SkeletonBlock width="100%" height="250px" />
+      <SkeletonTextLine length={12} />
+    </StyledShopItem>
+  );
+}
+
+export function SkeletonProductsGrid() {
+  return (
+    <>
+      <SkeletonProduct />
+      <SkeletonProduct />
+      <SkeletonProduct />
+      <SkeletonProduct />
+      <SkeletonProduct />
+      <SkeletonProduct />
+    </>
+  );
+}

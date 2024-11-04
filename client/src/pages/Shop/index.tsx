@@ -2,7 +2,7 @@ import PageWrapper from "../../layouts/PageWrapper";
 import ShopItem from "./ShopItem";
 import Modal from "../../components/Modal";
 import { useAllProducts } from "../../hooks/useAllProducts";
-import { StyledShop } from "./StyledComponents";
+import { SkeletonProductsGrid, StyledShop } from "./StyledComponents";
 import { useNavigate, useParams } from "react-router-dom";
 import { Pages } from "../../enums";
 import { useShoppingCart } from "use-shopping-cart";
@@ -34,9 +34,9 @@ export function Shop() {
   return (
     <PageWrapper>
       <PageMaxWithContainer>
-        {loading && <p>loading...</p>}
-
         <StyledShop>
+          {loading && <SkeletonProductsGrid />}
+
           {products &&
             products.map((product) => (
               <ShopItem key={product._id} product={product} />
