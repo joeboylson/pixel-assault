@@ -7,12 +7,13 @@ import WikiFaction from "../WikiFaction";
 import WikiStoryPage from "../WikiStoryPage";
 import WikiCard from "../WikiCard";
 import { useMemo } from "react";
+import WikiWelcomePage from "../WikiWelcomePage";
 
 const { HEADER_HEIGHT, FOOTER_HEIGHT } = LayoutValues;
 
 export const StyledActiveWikiPage = styled.div`
-  padding: 24px;
-  height: calc(100vh - 48px - ${HEADER_HEIGHT + FOOTER_HEIGHT}px);
+  padding: 72px;
+  min-height: 100vh;
   overflow-y: scroll;
 
   display: grid;
@@ -42,9 +43,22 @@ export default function ActiveWikiPage() {
     }
   }, [document]);
 
-  if (loading) return <p>Loading...</p>;
-
   return (
-    <StyledActiveWikiPage>{document && <Component />}</StyledActiveWikiPage>
+    <StyledActiveWikiPage>
+      {loading ? (
+        // if loading
+        <p>Loading...</p>
+      ) : (
+        <>
+          {!!document ? (
+            // if document
+            <Component />
+          ) : (
+            // if not loading AND no document
+            <WikiWelcomePage />
+          )}
+        </>
+      )}
+    </StyledActiveWikiPage>
   );
 }

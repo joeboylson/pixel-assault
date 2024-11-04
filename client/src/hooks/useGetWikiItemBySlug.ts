@@ -10,7 +10,11 @@ export function useGetWikiItemBySlug(slug: string) {
   useEffect(() => {
     if (isEmpty(slug)) return;
 
+    console.log(">>> pass 1");
+
     if (document?.slug.current !== slug) {
+      console.log(">>> pass 2");
+
       setLoading(true);
 
       const query = `*[slug.current=="${slug}"]{
