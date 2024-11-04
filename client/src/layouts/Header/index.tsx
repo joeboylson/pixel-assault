@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Pages } from "../../enums";
+import { LayoutValues, Pages } from "../../enums";
 import { NavLink } from "react-router-dom";
 import { useShoppingCart } from "use-shopping-cart";
 import CheckoutButton from "../../components/CheckoutButton";
@@ -7,6 +7,7 @@ import { StyledBadge } from "../../components/Badge";
 import { WithColorTransitionCSS } from "../../utils/transition";
 
 const StyledHeader = styled.header`
+  height: ${LayoutValues.HEADER_HEIGHT}px;
   padding: 0 24px;
   display: flex;
   align-items: center;
