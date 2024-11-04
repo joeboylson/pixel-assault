@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useShoppingCart } from "use-shopping-cart";
 import CheckoutButton from "../../components/CheckoutButton";
 import { StyledBadge } from "../../components/Badge";
+import { WithColorTransitionCSS } from "../../utils/transition";
 
 const StyledHeader = styled.header`
   padding: 0 24px;
@@ -15,10 +16,11 @@ const StyledHeader = styled.header`
 export const NavWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, auto);
-  gap: 12px;
+  gap: 24px;
   align-items: center;
 
   > a {
+    ${WithColorTransitionCSS}
     text-transform: capitalize;
     text-decoration: none;
 

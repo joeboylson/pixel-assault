@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { MinimalButtonCSS } from "../../components/MinimalButton";
+import { WithBackgroundColorTransitionCSS } from "../../utils/transition";
 
 export const StyledShop = styled.div`
   display: grid;
@@ -17,6 +18,7 @@ export const StyledShopItem = styled.div`
 
 export const AddToCartButton = styled.button`
   ${MinimalButtonCSS}
+  ${WithBackgroundColorTransitionCSS}
 
   padding: 8px 24px;
   border-radius: 8px;

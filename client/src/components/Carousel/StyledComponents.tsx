@@ -66,11 +66,15 @@ export const NavigationButtonsWrapper = styled.div`
 
 export const NavigationButton = styled.button`
   margin: 12px;
-  background-color: transparent;
+  background-color: var(--themeAccent1);
   border: 0;
   outline: none;
   cursor: pointer;
   transition-duration: 300ms;
+  width: 48px;
+  height: 48px;
+  padding: 12px;
+  border-radius: 48px;
 
   &:disabled {
     opacity: 0.5;

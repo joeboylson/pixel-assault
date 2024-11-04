@@ -7,8 +7,10 @@ export const SpacedOneColumnCSS = css`
   align-content: start;
 `;
 
-const SpacedOneColumn = styled.div`
+const SpacedOneColumn = styled.div<{ extraSpacing?: boolean }>`
   ${SpacedOneColumnCSS}
+
+  ${(props) => (props.extraSpacing ? `gap: 144px` : "")};
 `;
 
 export default SpacedOneColumn;

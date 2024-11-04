@@ -122,8 +122,8 @@ export default function Carousel({ children }: WithManyChildren) {
   const buttonsDisabled = position !== NEUTRAL;
 
   return (
-    <StyledCarousel data-id="Carousel">
-      <CarouselWrapper className={className}>
+    <StyledCarousel data-id="StyledCarousel">
+      <CarouselWrapper className={className} data-id="CarouselWrapper">
         {orderedChildren.map((child, index) => (
           <ChildWrapper key={index}>{child}</ChildWrapper>
         ))}
@@ -133,11 +133,11 @@ export default function Carousel({ children }: WithManyChildren) {
           <span />
         ) : (
           <NavigationButton onClick={prev} disabled={buttonsDisabled}>
-            <CaretLeft />
+            <CaretLeft size={24} color="var(--themeBackground)" />
           </NavigationButton>
         )}
         <NavigationButton onClick={next} disabled={buttonsDisabled}>
-          <CaretRight />
+          <CaretRight size={24} color="var(--themeBackground)" />
         </NavigationButton>
       </NavigationButtonsWrapper>
     </StyledCarousel>

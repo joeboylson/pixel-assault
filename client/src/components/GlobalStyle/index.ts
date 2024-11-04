@@ -31,9 +31,7 @@ export const GlobalStyle = createGlobalStyle`
 
     &:hover {
       color: var(--themeAccent1);
-      * {
-      color: var(--themeAccent1);
-      }
+      * { color: var(--themeAccent1); }    
     }
   }
 

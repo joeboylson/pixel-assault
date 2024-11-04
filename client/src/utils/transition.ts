@@ -1,5 +1,6 @@
 import { first } from "lodash";
 import { TransitionChoreography } from "../types/transition";
+import { css } from "styled-components";
 
 export function doTransitionChoreography(c: TransitionChoreography) {
   if (c && c.length > 0) {
@@ -29,3 +30,13 @@ export function doTransitionChoreography(c: TransitionChoreography) {
     }
   }
 }
+
+export const WithColorTransitionCSS = css`
+  transition-property: color;
+  transition-duration: 500ms;
+`;
+
+export const WithBackgroundColorTransitionCSS = css`
+  transition-property: background-color;
+  transition-duration: 500ms;
+`;

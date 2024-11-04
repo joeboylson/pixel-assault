@@ -7,7 +7,7 @@ import WikiFaction from "../WikiFaction";
 import SpacedOneColumn from "../../components/SpacedOneColumn";
 import Block from "../../components/Block";
 import Image from "../../components/Image";
-import FixedLeftContainer from "../../components/FixedLeftContainer";
+import OffsetTwoColumn from "../../components/OffsetTwoColumn";
 import HyperlinkedWrapper from "../../components/HyperlinkedWrapper";
 
 export default function WikiCard({ document }: WikiPageProps) {
@@ -31,7 +31,7 @@ export default function WikiCard({ document }: WikiPageProps) {
 
   return (
     <SpacedOneColumn>
-      <FixedLeftContainer>
+      <OffsetTwoColumn direction="left">
         {image?.asset && <Image value={image.asset} />}
 
         <SpacedOneColumn>
@@ -43,7 +43,7 @@ export default function WikiCard({ document }: WikiPageProps) {
             <p>Is Commander: {is_commander ? "Yes" : "No"}</p>
           </div>
         </SpacedOneColumn>
-      </FixedLeftContainer>
+      </OffsetTwoColumn>
 
       <div>
         <h3>Lore:</h3>

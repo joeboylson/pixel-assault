@@ -2,10 +2,13 @@ import styled from "styled-components";
 import { WithChildren } from "../../types";
 import { LayoutValues } from "../../enums/layout";
 import Header from "../Header";
+import { WithBackgroundColorTransitionCSS } from "../../utils/transition";
 
 const { HEADER_HEIGHT, FOOTER_HEIGHT } = LayoutValues;
 
 const StyledPageWrapper = styled.div`
+  ${WithBackgroundColorTransitionCSS}
+
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: ${HEADER_HEIGHT}px 1fr ${FOOTER_HEIGHT}px;
@@ -22,6 +25,8 @@ const StyledPageWrapper = styled.div`
 const Content = styled.div``;
 
 const Footer = styled.footer`
+  ${WithBackgroundColorTransitionCSS}
+
   padding: 0 24px;
   display: grid;
   align-content: center;
