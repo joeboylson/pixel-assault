@@ -4,7 +4,7 @@ import { router } from "./router";
 import { RouterProvider } from "react-router-dom";
 import { CartProvider } from "use-shopping-cart";
 import PageTransitionWrapper from "./context/PageTransitionContext";
-import { GlobalStyle } from "./components/GlobalStyle";
+import { Fonts, GlobalStyle } from "./components/GlobalStyle";
 import ThemeWrapper from "./context/ThemeContext";
 
 const root = ReactDOM.createRoot(
@@ -14,6 +14,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <ThemeWrapper>
     <React.StrictMode>
+      <Fonts />
       <GlobalStyle />
       <CartProvider
         cartMode="checkout-session"

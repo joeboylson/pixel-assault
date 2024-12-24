@@ -1,4 +1,5 @@
 import styled, { css } from "styled-components";
+import { LayoutValues } from "../../enums";
 
 export const carouselTransitionDuration = 1000;
 export const carouselAutoTransitionDelay = 7000;
@@ -50,7 +51,7 @@ export const CarouselWrapper = styled.div`
 
 export const ChildWrapper = styled.div`
   width: 100vw;
-  height: 80vh;
+  height: ${LayoutValues.CAROUSEL_HEIGHT};
   flex-shrink: 0;
   background-color: gray;
 `;

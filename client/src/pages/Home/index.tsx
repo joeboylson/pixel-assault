@@ -6,9 +6,20 @@ import PageWrapper from "../../layouts/PageWrapper";
 import SpacedOneColumn from "../../components/SpacedOneColumn";
 import OffsetTwoColumn from "../../components/OffsetTwoColumn";
 import styled from "styled-components";
+import BannerArt from "../../assets/images/BannerArt.png";
+import { LayoutValues } from "../../enums";
+import Button from "../../components/Button";
 
 const HomeContentWrapper = styled.div`
   padding-top: 50px;
+`;
+
+const Banner = styled.div`
+  width: 100vw;
+  height: ${LayoutValues.CAROUSEL_HEIGHT};
+  background-image: url("${BannerArt}");
+  background-size: cover;
+  background-position: center;
 `;
 
 export function Home() {
@@ -18,11 +29,11 @@ export function Home() {
   return (
     <PageWrapper>
       <Carousel>
-        <img src="images/001.jpg" alt="" />
-        <img src="images/002.jpg" alt="" />
-        <img src="images/003.jpg" alt="" />
-        <img src="images/004.webp" alt="" />
+        <Banner />
+        <Banner />
       </Carousel>
+
+      <Button onClick={() => {}} text="This is a button" />
 
       <HomeContentWrapper>
         <PageMaxWithContainer>

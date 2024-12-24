@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SpacedOneColumn from "../../components/SpacedOneColumn";
+import logoCrow2 from "../../assets/images/logoCrow2.png";
 
 const StyledFooter = styled.footer`
   padding: 72px;
@@ -31,7 +32,7 @@ export default function Footer() {
     <StyledFooter data-id="StyledFooter">
       <FooterContentWrapper>
         <FooterImageWrapper>
-          <img src="https://placehold.co/500x100" alt="" />
+          <img src={logoCrow2} alt="" />
         </FooterImageWrapper>
 
         <FooterLinksWrapper>

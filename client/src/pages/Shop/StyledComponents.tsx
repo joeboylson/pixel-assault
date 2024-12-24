@@ -17,16 +17,6 @@ export const StyledShopItem = styled.div`
   gap: 8px;
 `;
 
-export const AddToCartButton = styled.button`
-  ${MinimalButtonCSS}
-  ${WithBackgroundColorTransitionCSS}
-
-  padding: 8px 24px;
-  border-radius: 8px;
-  background-color: var(--themeAccent1);
-  color: var(--themeBackground);
-`;
-
 export function SkeletonProduct() {
   return (
     <StyledShopItem>
