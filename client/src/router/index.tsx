@@ -1,5 +1,5 @@
 import { Pages } from "../enums";
-import { Home, Shop, Wiki } from "../pages";
+import { Home, Shop, Wiki, HealthTracker } from "../pages";
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
 export const router = createBrowserRouter([
@@ -26,5 +26,9 @@ export const router = createBrowserRouter([
   {
     path: Pages.SHOP_RESULT,
     element: <Shop />,
+  },
+  {
+    path: Pages.HEALTH_TRACKER,
+    element: <HealthTracker />,
   },
 ]);

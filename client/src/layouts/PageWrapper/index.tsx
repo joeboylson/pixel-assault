@@ -13,7 +13,6 @@ const StyledPageWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   width: 100vw;
-  height: 100vh;
   overflow-x: hidden;
   background-color: var(--themeBackground);
 

@@ -1,6 +1,5 @@
 {
-  "name": "Express React Boilerplate",
-  "short_name": "ERB",
-  "start_url": ".",
-  "TODO": "fix \"name\" and \"short_name\""
+  "name": "Pixel Assault",
+  "short_name": "pixel_assault",
+  "start_url": "."
 }

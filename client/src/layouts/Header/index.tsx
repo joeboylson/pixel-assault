@@ -16,7 +16,7 @@ const StyledHeader = styled.header`
 
 export const NavWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
   gap: 24px;
   align-items: center;
 
@@ -47,6 +47,9 @@ export default function Header() {
         <NavLink to={Pages.HOME}>{Pages.HOME.replaceAll("/", "")}</NavLink>
         <NavLink to={Pages.SHOP}>{Pages.SHOP.replaceAll("/", "")}</NavLink>
         <NavLink to={Pages.WIKI}>{Pages.WIKI.replaceAll("/", "")}</NavLink>
+        <NavLink to={Pages.HEALTH_TRACKER}>
+          {Pages.HEALTH_TRACKER.replaceAll("/", "").replaceAll("-", " ")}
+        </NavLink>
       </NavWrapper>
 
       <CheckoutWrapper>

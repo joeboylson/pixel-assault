@@ -5,4 +5,5 @@ export enum Pages {
   WIKI_SELECTED_PAGE = "/wiki/:type/:slug",
   SHOP = "/shop",
   SHOP_RESULT = "/shop/:result",
+  HEALTH_TRACKER = "/health-tracker",
 }

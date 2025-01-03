@@ -33,8 +33,6 @@ export function Home() {
         <Banner />
       </Carousel>
 
-      <Button onClick={() => {}} text="This is a button" />
-
       <HomeContentWrapper>
         <PageMaxWithContainer>
           <SpacedOneColumn extraSpacing>

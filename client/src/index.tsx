@@ -4,8 +4,12 @@ import { router } from "./router";
 import { RouterProvider } from "react-router-dom";
 import { CartProvider } from "use-shopping-cart";
 import PageTransitionWrapper from "./context/PageTransitionContext";
-import { Fonts, GlobalStyle } from "./components/GlobalStyle";
+import { GlobalStyle } from "./components/GlobalStyle";
 import ThemeWrapper from "./context/ThemeContext";
+
+// fonts
+import "./fonts.css";
+import LilCrowGuy from "./layouts/LilCrowGuy";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,7 +18,6 @@ const root = ReactDOM.createRoot(
 root.render(
   <ThemeWrapper>
     <React.StrictMode>
-      <Fonts />
       <GlobalStyle />
       <CartProvider
         cartMode="checkout-session"
@@ -23,6 +26,7 @@ root.render(
         shouldPersist
       >
         <PageTransitionWrapper>
+          <LilCrowGuy />
           <RouterProvider router={router} />
         </PageTransitionWrapper>
       </CartProvider>
