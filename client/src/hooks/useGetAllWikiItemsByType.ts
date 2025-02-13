@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
 import { sanityClient } from "../utils/sanity";
-import { groupBy } from "lodash";
 import { SanityDocument } from "@sanity/client";
 
-const QUERY = `*[defined(slug)]{...}`;
-
-export function useGetAllWikiItems() {
+export function useGetAllWikiItemsByType(type: string) {
   const [documents, setDocuments] = useState<SanityDocument[]>();
   const [loading, setLoading] = useState(false);
 
@@ -13,15 +10,22 @@ export function useGetAllWikiItems() {
     if (!documents && !loading) {
       setLoading(true);
 
+      const query = `*[_type=="${type}"]{...}`;
+
+      console.log({ query });
+
       sanityClient
-        .fetch(QUERY)
+        .fetch(query)
         .then(setDocuments)
-        .catch(() => setDocuments([]))
+        .catch((e) => {
+          console.log({ e });
+          setDocuments([]);
+        })
         .finally(() => {
           setLoading(false);
         });
     }
   }, [loading, setLoading, documents]);
 
-  return { loading, documents, documentsByType: groupBy(documents, "_type") };
+  return { loading, documents };
 }

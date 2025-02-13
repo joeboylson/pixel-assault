@@ -6,10 +6,11 @@ import { CartProvider } from "use-shopping-cart";
 import PageTransitionWrapper from "./context/PageTransitionContext";
 import { GlobalStyle } from "./components/GlobalStyle";
 import ThemeWrapper from "./context/ThemeContext";
+import LilCrowGuy from "./layouts/LilCrowGuy";
+import PlayerTrackerWrapper from "./context/PlayerTrackerContext";
 
 // fonts
 import "./fonts.css";
-import LilCrowGuy from "./layouts/LilCrowGuy";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -26,8 +27,10 @@ root.render(
         shouldPersist
       >
         <PageTransitionWrapper>
-          <LilCrowGuy />
-          <RouterProvider router={router} />
+          <PlayerTrackerWrapper>
+            <LilCrowGuy />
+            <RouterProvider router={router} />
+          </PlayerTrackerWrapper>
         </PageTransitionWrapper>
       </CartProvider>
     </React.StrictMode>

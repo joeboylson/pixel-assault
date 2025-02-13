@@ -1,5 +1,5 @@
 import { Minus, Plus, Skull } from "@phosphor-icons/react";
-import { HealthSliderValue } from "../../types";
+import { Player } from "../../types";
 import {
   ProgressBar,
   ProgressBarValue,
@@ -7,44 +7,26 @@ import {
   StyledHealthSlider,
 } from "./StyledComponents";
 
-type _props = HealthSliderValue & {
-  setHealthSliderValue: (id: string, value: number) => void;
+type _props = Player & {
+  setHealthSliderValue?: (id: string, value: number) => void;
 };
 
-export function HealthSlider({
-  id,
-  min,
-  max,
-  value,
-  setHealthSliderValue,
-}: _props) {
-  const percentage = (value / max) * 100;
-
-  const decrement = () => {
-    if (value === min) return;
-    setHealthSliderValue(id, value - 1);
-  };
-
-  const increment = () => {
-    if (value === max) return;
-    setHealthSliderValue(id, value + 1);
-  };
-
+export function HealthSlider({ id, goldAmount, healthAmount }: _props) {
   return (
     <StyledHealthSlider key={id}>
-      <SliderControl onClick={decrement}>
-        {value > 0 ? (
+      <SliderControl onClick={console.log}>
+        {healthAmount > 0 ? (
           <Minus size={24} weight="bold" />
         ) : (
           <Skull size={24} weight="bold" />
         )}
       </SliderControl>
-      <ProgressBar percentage={percentage}>
+      <ProgressBar percentage={healthAmount}>
         <ProgressBarValue>
-          <p>{`${value} / ${max}`}</p>
+          <p>{`${healthAmount} / 100`}</p>
         </ProgressBarValue>
       </ProgressBar>
-      <SliderControl onClick={increment}>
+      <SliderControl onClick={console.log}>
         <Plus size={24} weight="bold" />
       </SliderControl>
     </StyledHealthSlider>

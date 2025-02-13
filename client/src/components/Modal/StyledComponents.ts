@@ -43,6 +43,8 @@ export const Dialog = styled.div`
   gap: 36px;
   align-content: start;
   border-radius: 8px;
+
+  overflow-y: auto;
 `;
 
 export const DialogueExitButton = styled.button`

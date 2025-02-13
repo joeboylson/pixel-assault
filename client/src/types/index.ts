@@ -1,5 +1,5 @@
 export * from "./functionalComponent";
-export * from "./healthSlider";
+export * from "./player";
 export * from "./sanity.types";
 export * from "./string";
 export * from "./theme";

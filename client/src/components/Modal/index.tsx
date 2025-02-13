@@ -8,6 +8,7 @@ import MinimalButton from "../MinimalButton";
 
 type _props = WithChildren & {
   buttonChild?: React.ReactNode | React.ReactNode[];
+  buttonComponent?: React.ReactNode;
   buttonDisabled?: boolean;
   handleOnClose?: () => void;
   headless?: boolean;
@@ -16,6 +17,7 @@ type _props = WithChildren & {
 export default function Modal({
   children,
   buttonChild,
+  buttonComponent,
   buttonDisabled,
   handleOnClose,
   headless,
@@ -40,11 +42,13 @@ export default function Modal({
 
   return (
     <>
-      {!headless && (
+      {!headless && !buttonComponent && (
         <MinimalButton onClick={openDialog} disabled={buttonDisabled}>
           {buttonChild}
         </MinimalButton>
       )}
+
+      {buttonComponent && buttonComponent}
 
       <DialogWrapper onClick={close} className={className}>
         <Dialog onClick={ignoreClick} className={className}>

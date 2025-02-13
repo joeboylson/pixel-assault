@@ -5,14 +5,13 @@ import { WithBackgroundColorTransitionCSS } from "../../utils/transition";
 import Header from "../Header";
 import Footer from "../Footer";
 
-const { HEADER_HEIGHT, FOOTER_HEIGHT } = LayoutValues;
-
 const StyledPageWrapper = styled.div`
   ${WithBackgroundColorTransitionCSS}
 
   display: grid;
   grid-template-columns: 1fr;
   width: 100vw;
+  min-height: 100vh;
   overflow-x: hidden;
   background-color: var(--themeBackground);
 
@@ -23,12 +22,16 @@ const StyledPageWrapper = styled.div`
 
 const Content = styled.div``;
 
-export default function PageWrapper({ children }: WithChildren) {
+type _props = WithChildren & {
+  hideHeaderAndFooter?: boolean;
+};
+
+export default function PageWrapper({ children, hideHeaderAndFooter }: _props) {
   return (
     <StyledPageWrapper data-id="PageWrapper">
-      <Header />
+      {!hideHeaderAndFooter && <Header />}
       <Content data-id="PageWrapper.Content">{children}</Content>
-      <Footer />
+      {!hideHeaderAndFooter && <Footer />}
     </StyledPageWrapper>
   );
 }
