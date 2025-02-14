@@ -10,7 +10,6 @@ import { Player, WithChildren } from "../../types";
 const PLAYERS_LOCALSTORAGE_KEY = "pixel-assault-players";
 
 function getSavedPlayers() {
-  console.log("GET SAVED PLAYERS");
   try {
     const healthSliderData = window.localStorage.getItem(
       PLAYERS_LOCALSTORAGE_KEY
@@ -24,7 +23,6 @@ function getSavedPlayers() {
 }
 
 function savePlayers(players: Player[]) {
-  console.log("SAVE PLAYERS");
   const playerData = JSON.stringify(players);
   window.localStorage.setItem(PLAYERS_LOCALSTORAGE_KEY, playerData);
 }

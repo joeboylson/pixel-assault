@@ -40,7 +40,6 @@ export const useStripePayment = () => {
         });
     } catch (error) {
       setLoading(false);
-      console.log(error);
     }
   }, [cartEntries]);
 

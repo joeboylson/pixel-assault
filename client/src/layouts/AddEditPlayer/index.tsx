@@ -1,19 +1,18 @@
 import { isEmpty } from "lodash";
 import { Faction, Player } from "../../types";
+import { useCallback, useMemo, useState } from "react";
+import Button from "../../components/Button";
+import { v4 as uuidv4 } from "uuid";
+import { usePlayerTrackerContext } from "../../context/PlayerTrackerContext";
+import { useGetAllWikiItemsByType } from "../../hooks/useGetAllWikiItemsByType";
+import TeamSelection from "./TeamSelection";
+import { getFactionBackground, getFactionIcon } from "../../utils/faction";
+
 import {
   FactionButton,
   FactionButtonWrapper,
   StyledAddEditPlayer,
 } from "./StyledComponents";
-import { useCallback, useState } from "react";
-import Button from "../../components/Button";
-import { v4 as uuidv4 } from "uuid";
-import { usePlayerTrackerContext } from "../../context/PlayerTrackerContext";
-import { useGetAllWikiItemsByType } from "../../hooks/useGetAllWikiItemsByType";
-import { useGetAllWikiItems } from "../../hooks/useGetAllWikiItems";
-import MinimalButton from "../../components/MinimalButton";
-import { SanityDocument } from "@sanity/client";
-import TeamSelection from "./TeamSelection";
 
 interface _props {
   player?: Player;
@@ -30,6 +29,11 @@ export default function AddEditPlayer({ player, handleAfterSubmit }: _props) {
   const { addNewPlayer } = usePlayerTrackerContext();
 
   const isNew = player === undefined;
+
+  const FactionBackgroundSrc = useMemo(() => {
+    const factionSlug = faction?.slug?.current ?? "";
+    return getFactionBackground(factionSlug);
+  }, [faction]);
 
   const handleSave = useCallback(() => {
     if (isEmpty(name) || name === undefined)
@@ -67,17 +71,25 @@ export default function AddEditPlayer({ player, handleAfterSubmit }: _props) {
 
       <TeamSelection onChange={setTeam} selectedTeam={team} />
 
-      <FactionButtonWrapper>
-        <p>Choose a faction:</p>
-        {(factions ?? []).map((f) => {
+      <FactionButtonWrapper backgroundsrc={FactionBackgroundSrc}>
+        <p>
+          <b>Choose a faction:</b>
+        </p>
+        {(factions ?? []).map((_f) => {
+          const f = _f as Faction;
           const className = f === faction ? "selected" : "";
+          const iconSrc = getFactionIcon(f.slug?.current ?? "");
 
           return (
             <FactionButton
               onClick={() => setFaction(f as Faction)}
               className={className}
+              key={f._id}
             >
-              {f.name}
+              <div>
+                <img src={iconSrc} alt="" />
+                {f.name}
+              </div>
             </FactionButton>
           );
         })}

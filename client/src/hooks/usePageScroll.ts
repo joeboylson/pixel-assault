@@ -5,7 +5,6 @@ const usePageScroll = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      console.log("handle scroll!");
       setScrollValue(window.scrollY || document.documentElement.scrollTop);
     };
 

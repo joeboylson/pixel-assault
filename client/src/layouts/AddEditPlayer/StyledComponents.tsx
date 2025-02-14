@@ -84,12 +84,29 @@ export const TeamButton = styled.button`
   }
 `;
 
-export const FactionButtonWrapper = styled.div`
+export const FactionButtonWrapper = styled.div<{ backgroundsrc: string }>`
   display: grid;
-  grid-template-column: 1fr;
+  grid-template-columns: 1fr;
   gap: 4px;
   border: 1px solid white;
   padding: 24px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    z-index: -1;
+    background-image: url("${(props) => props.backgroundsrc}");
+    background-position: top -30px right 0px;
+    background-size: cover;
+    opacity: 0.25;
+  }
 `;
 
 export const FactionButton = styled.button`
@@ -98,6 +115,17 @@ export const FactionButton = styled.button`
   border: 1px solid transparent;
   width: 100%;
   line-height: 32px;
+
+  display: grid;
+  place-items: center;
+
+  > div {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    width: fit-content;
+    align-items: center;
+    gap: 8px;
+  }
 
   &.selected {
     border: 1px solid white;

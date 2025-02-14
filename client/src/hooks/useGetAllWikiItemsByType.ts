@@ -12,15 +12,10 @@ export function useGetAllWikiItemsByType(type: string) {
 
       const query = `*[_type=="${type}"]{...}`;
 
-      console.log({ query });
-
       sanityClient
         .fetch(query)
         .then(setDocuments)
-        .catch((e) => {
-          console.log({ e });
-          setDocuments([]);
-        })
+        .catch((e) => setDocuments([]))
         .finally(() => {
           setLoading(false);
         });
