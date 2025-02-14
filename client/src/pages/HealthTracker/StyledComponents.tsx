@@ -8,7 +8,20 @@ export const StyledHealthTracker = styled.div`
   padding: 0 24px;
 `;
 
-export const HealthSlidersWrapper = styled.div`
+export const ControlsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 48px 1fr 1fr;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  gap: 8px;
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+export const HealthSlidersWrapper = styled.div<{ backgroundsrc: string }>`
   position: relative;
   display: grid;
   grid-template-columns: 1fr;
@@ -28,11 +41,35 @@ export const HealthSlidersWrapper = styled.div`
     height: -webkit-fill-available;
     z-index: -1;
 
-    background-image: url("${MountainTribesHQ}");
+    background-image: url("${(props) => props.backgroundsrc}");
     background-size: cover;
     background-position: center;
 
-    opacity: 0.2;
+    opacity: 0.3;
     border-radius: 8px;
+  }
+`;
+
+export const FactionBanner = styled.div<{ iconsrc: string; bannersrc: string }>`
+  width: 100%;
+  height: 70px;
+  background-image: url("${(props) => props.iconsrc}");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  position: relative;
+  margin: 24px 0;
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-image: url("${(props) => props.bannersrc}");
+    width: 100%;
+    height: 70px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    z-index: -1;
+    transform: scale(1.5);
   }
 `;

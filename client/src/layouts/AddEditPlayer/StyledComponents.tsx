@@ -67,13 +67,12 @@ export const TabsWrapper = styled.div`
 
 export const TeamButtonWrapper = styled.div`
   display: grid;
-  grid-template-column: 1fr;
-  gap: 4px;
+  grid-template-columns: 1fr;
 `;
 
 export const TeamButton = styled.button`
   ${MinimalButtonCSS}
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid transparent;
   margin-top: 4px;
   width: 100%;
@@ -105,13 +104,13 @@ export const FactionButtonWrapper = styled.div<{ backgroundsrc: string }>`
     background-image: url("${(props) => props.backgroundsrc}");
     background-position: top -30px right 0px;
     background-size: cover;
-    opacity: 0.25;
+    opacity: 0.3;
   }
 `;
 
 export const FactionButton = styled.button`
   ${MinimalButtonCSS}
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid transparent;
   width: 100%;
   line-height: 32px;

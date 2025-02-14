@@ -61,10 +61,10 @@ export default function AddEditPlayer({ player, handleAfterSubmit }: _props) {
       <h3>{isNew ? "Add New" : "Edit"} Player</h3>
 
       <div>
-        <p>Player Name:</p>
+        <p>What do we call you?</p>
         <input
           type="text"
-          placeholder="Player Name"
+          placeholder="Your Name"
           onChange={(e) => setName(e.target.value)}
         />
       </div>

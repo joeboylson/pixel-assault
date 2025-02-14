@@ -6,8 +6,23 @@ export const StyledHealthSlider = styled.div`
   display: grid;
   gap: 12px;
   grid-template-columns: ${HEALTH_SLIDER_HEIGHT}px 1fr ${HEALTH_SLIDER_HEIGHT}px;
-  width: 100%;
-  margin: 0 auto;
+  margin: 0 12px;
+  padding: 32px 12px;
+  width: calc(100% - 48px);
+  align-items: center;
+  border: 1px solid white;
+  border-radius: 8px;
+
+  &.readonly {
+    width: calc(100% - 48px);
+    grid-template-columns: 1fr;
+    padding: 12px 12px;
+    opacity: 0.68;
+  }
+`;
+
+export const PlayerName = styled.h3`
+  grid-column: span 3;
 `;
 
 interface ProgressBarProps {
@@ -55,6 +70,16 @@ export const ProgressBar = styled.div<ProgressBarProps>`
     transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
     z-index: 0;
   }
+
+  &.readonly {
+    height: ${HEALTH_SLIDER_HEIGHT / 2}px;
+    grid-column: span 3;
+
+    &::before {
+      height: ${HEALTH_SLIDER_HEIGHT / 2}px;
+      opacity: 0.75;
+    }
+  }
 `;
 
 export const ProgressBarValue = styled.div`
@@ -73,4 +98,10 @@ export const SliderControl = styled.button`
   background-color: transparent;
   border: 0;
   outline: none;
+`;
+
+export const ControlIcon = styled.img`
+  width: 24px;
+  height: 24px;
+  padding-top: 6px;
 `;

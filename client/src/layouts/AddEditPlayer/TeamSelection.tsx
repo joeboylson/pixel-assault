@@ -7,6 +7,7 @@ import {
   TeamButtonWrapper,
   TeamButton,
 } from "./StyledComponents";
+import { uniq } from "lodash";
 
 interface _props {
   onChange: (team: string) => void;
@@ -14,9 +15,11 @@ interface _props {
 }
 
 export default function TeamSelection({ onChange, selectedTeam }: _props) {
-  const { players } = usePlayerTrackerContext();
-  const existingTeams = players.map((p) => p.team ?? "Unnamed Team") ?? [];
-  const noExistingTeams = existingTeams.length === 0;
+  const {
+    players,
+    teams: existingTeams,
+    isEmpty: noExistingTeams,
+  } = usePlayerTrackerContext();
 
   const {
     disable: showCustomNameInput,
@@ -44,9 +47,12 @@ export default function TeamSelection({ onChange, selectedTeam }: _props) {
         <TeamButtonWrapper>
           {existingTeams.map((team) => {
             const className = team === selectedTeam ? "selected" : "";
+            const playersOnTeam = (players.filter((p) => p.team === team) ?? [])
+              .length;
+
             return (
               <TeamButton className={className} onClick={() => onChange(team)}>
-                {team}
+                {team} ({playersOnTeam} players)
               </TeamButton>
             );
           })}

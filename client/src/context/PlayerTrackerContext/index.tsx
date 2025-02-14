@@ -6,6 +6,7 @@ import {
   useState,
 } from "react";
 import { Player, WithChildren } from "../../types";
+import { uniq } from "lodash";
 
 const PLAYERS_LOCALSTORAGE_KEY = "pixel-assault-players";
 
@@ -29,6 +30,8 @@ function savePlayers(players: Player[]) {
 
 const contextDefaultValue = {
   players: [] as Player[],
+  teams: [] as string[],
+  isEmpty: true,
   addNewPlayer: (_: Player) => {},
 };
 
@@ -37,6 +40,11 @@ export const PlayerTrackerProvider = PlayerTrackerContext.Provider;
 
 export default function PlayerTrackerWrapper({ children }: WithChildren) {
   const [players, setPlayers] = useState<Player[]>();
+
+  const teams = uniq(
+    (players ?? []).map((p) => p.team ?? "Unnamed Team") ?? []
+  );
+  const isEmpty = teams.length === 0;
 
   useEffect(() => {
     if (players === undefined) {
@@ -59,6 +67,8 @@ export default function PlayerTrackerWrapper({ children }: WithChildren) {
 
   const value = {
     players: (players ?? []) as Player[],
+    teams,
+    isEmpty,
     addNewPlayer,
   };
 

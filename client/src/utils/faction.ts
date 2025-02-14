@@ -16,6 +16,15 @@ import SiliconIcon from "../assets/images/faction_icons/Silicon.png";
 import PlainsIcon from "../assets/images/faction_icons/Plains.png";
 import NeutralIcon from "../assets/images/faction_icons/Star.png";
 
+/**
+ * Banner
+ */
+import MercenariesBanner from "../assets/images/faction_banner/Painel Mercenary.png";
+import MontainTribesBanner from "../assets/images/faction_banner/Painel Mountain.png";
+import SiliconBanner from "../assets/images/faction_banner/Painel Silicon.png";
+import PlainsBanner from "../assets/images/faction_banner/Painel Plains.png";
+import NeutralBanner from "../assets/images/faction_banner/Painel Neutral.png";
+
 type FactionSlug =
   | "mercenary-faction"
   | "mountain-faction"
@@ -50,5 +59,20 @@ export function getFactionIcon(factionSlug: FactionSlug) {
       return PlainsIcon;
     default:
       return NeutralIcon;
+  }
+}
+
+export function getFactionBanner(factionSlug: FactionSlug) {
+  switch (factionSlug) {
+    case "mercenary-faction":
+      return MercenariesBanner;
+    case "mountain-faction":
+      return MontainTribesBanner;
+    case "silicon-faction":
+      return SiliconBanner;
+    case "plains-faction":
+      return PlainsBanner;
+    default:
+      return NeutralBanner;
   }
 }
