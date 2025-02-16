@@ -1,25 +1,35 @@
-import { getImageDimensions, SanityImageSource } from "@sanity/asset-utils";
+import { getImageDimensions } from "@sanity/asset-utils";
 import { makeImageUrl } from "../../utils/sanity";
+import { ImageValue } from "../../types/image";
 
 interface _props {
-  value: SanityImageSource;
+  value: ImageValue;
 }
 
 export default function Image({ value }: _props) {
-  console.log({ value });
+  if (!value.asset) {
+    return <span />;
+  }
 
-  const { width, height } = getImageDimensions(value);
-
-  const src = makeImageUrl(value);
+  const { width, height } = getImageDimensions(value.asset);
+  const src = makeImageUrl(value.asset);
 
   return (
-    <img
-      src={src}
-      alt={src}
-      loading="lazy"
-      style={{
-        aspectRatio: width / height,
-      }}
-    />
+    <>
+      <code>
+        (Image Created By:{" "}
+        {value.relatedAttribution?.name ?? "(No Attribution)"})
+      </code>
+      <img
+        src={src}
+        alt={src}
+        loading="lazy"
+        style={{
+          aspectRatio: width / height,
+        }}
+      />
+    </>
   );
+
+  return <p>{JSON.stringify(value)}</p>;
 }

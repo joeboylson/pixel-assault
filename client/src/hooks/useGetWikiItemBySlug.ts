@@ -17,11 +17,18 @@ export function useGetWikiItemBySlug(slug: string) {
         relatedMilitatyUnitType->,
         relatedFaction->,
         image {
-          asset->,
+          ...,
           relatedAttribution->
+        },
+        content[]{
+          ...,
+          _type,
+          relatedAttribution->,
         }
       }
       `;
+
+      console.log({ query });
 
       sanityClient
         .fetch(query)

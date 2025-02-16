@@ -96,6 +96,12 @@ export type BlockContent = Array<
       }
       hotspot?: SanityImageHotspot
       crop?: SanityImageCrop
+      relatedAttribution?: {
+        _ref: string
+        _type: 'reference'
+        _weak?: boolean
+        [internalGroqTypeReferenceTo]?: 'attribution'
+      }
       _type: 'image'
       _key: string
     }
@@ -130,6 +136,12 @@ export type Card = {
     }
     hotspot?: SanityImageHotspot
     crop?: SanityImageCrop
+    relatedAttribution?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'attribution'
+    }
     _type: 'image'
   }
   relatedFaction?: {
@@ -144,7 +156,6 @@ export type Card = {
     _weak?: boolean
     [internalGroqTypeReferenceTo]?: 'militaryUnitType'
   }
-  is_commander?: boolean
   cost?: number
   actionEconomy?: string
   lore?: BlockContent
@@ -259,6 +270,15 @@ export type SanityImageMetadata = {
   isOpaque?: boolean
 }
 
+export type Attribution = {
+  _id: string
+  _type: 'attribution'
+  _createdAt: string
+  _updatedAt: string
+  _rev: string
+  name?: string
+}
+
 export type Color = {
   _type: 'color'
   hex?: string
@@ -310,6 +330,7 @@ export type AllSanitySchemaTypes =
   | SanityImageAsset
   | SanityAssetSourceData
   | SanityImageMetadata
+  | Attribution
   | Color
   | RgbaColor
   | HsvaColor

@@ -1,5 +1,10 @@
 import { Link, Navigate } from "react-router-dom";
-import { Card, Faction, MilitaryUnitType } from "../../types/sanity.types";
+import {
+  Attribution,
+  Card,
+  Faction,
+  MilitaryUnitType,
+} from "../../types/sanity.types";
 import { WikiPageProps } from "../../types/wiki";
 import { Pages } from "../../enums";
 import SpacedOneColumn from "../../components/SpacedOneColumn";
@@ -8,6 +13,7 @@ import Image from "../../components/Image";
 import OffsetTwoColumn from "../../components/OffsetTwoColumn";
 import styled from "styled-components";
 import Details from "../../components/Details";
+import { ImageValue } from "../../types/image";
 
 const CardWrapper = styled.div`
   box-shadow: black 15px 25px 35px -15px;
@@ -36,12 +42,12 @@ export default function WikiCard({ document }: WikiPageProps) {
 
   const _relatedFaction = relatedFaction as unknown as Faction;
 
+  const value = image as ImageValue;
+
   return (
     <SpacedOneColumn>
       <OffsetTwoColumn direction="left">
-        <CardWrapper>
-          {image?.asset && <Image value={image.asset} />}
-        </CardWrapper>
+        <CardWrapper>{image?.asset && <Image value={value} />}</CardWrapper>
 
         <SpacedOneColumn>
           <h2>{name}</h2>

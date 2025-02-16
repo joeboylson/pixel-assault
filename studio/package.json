@@ -10,7 +10,9 @@
     "build": "sanity build",
     "deploy": "sanity deploy",
     "deploy-graphql": "sanity graphql deploy",
-    "setup": "npm install"
+    "setup": "npm install",
+    "schema-extract": "sanity schema extract",
+    "typegen-generate": "sanity typegen generate"
   },
   "keywords": [
     "sanity"

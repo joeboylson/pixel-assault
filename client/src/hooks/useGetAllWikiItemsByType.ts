@@ -10,7 +10,15 @@ export function useGetAllWikiItemsByType(type: string) {
     if (!documents && !loading) {
       setLoading(true);
 
-      const query = `*[_type=="${type}"]{...}`;
+      const query = `*[_type=="${type}"]{
+        ...,
+        relatedMilitatyUnitType->,
+        relatedFaction->,
+        image {
+          asset->,
+          relatedAttribution->
+        }
+      }`;
 
       sanityClient
         .fetch(query)

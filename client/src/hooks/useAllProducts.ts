@@ -2,7 +2,12 @@ import { useEffect, useState } from "react";
 import { sanityClient } from "../utils/sanity";
 import { Product } from "../types/sanity.types";
 
-const ALL_PRODUCTS_QUERY = `*[_type == "product"]`;
+const ALL_PRODUCTS_QUERY = `*[_type == "product"]{
+  image {
+    asset->,
+    relatedAttribution->
+  }
+}`;
 
 export function useAllProducts() {
   const [products, setProducts] = useState<Product[]>();

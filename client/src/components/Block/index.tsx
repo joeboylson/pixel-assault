@@ -30,15 +30,13 @@ interface _props {
 }
 
 export default function Block({ content }: _props) {
-  console.log({ content });
-
   return (
     <StyledBlock>
       <PortableText
         value={content ?? []}
         components={{
           types: {
-            image: Image,
+            image: ({ value }) => <Image value={value} />,
           },
         }}
       />

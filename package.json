@@ -18,7 +18,10 @@
     "build": "npm run build-client && npm run build-server",
     "start": "npm run --prefix server start",
     "local-start": "env-cmd npm run --prefix server start",
-    "clean": "rm -rf server/dist"
+    "clean": "rm -rf server/dist",
+    "schema-extract": "env-cmd npm run --prefix studio schema-extract",
+    "typegen-generate": "env-cmd npm run --prefix studio typegen-generate",
+    "sanity-typegen": "npm run schema-extract && npm run typegen-generate"
   },
   "keywords": [],
   "author": "",

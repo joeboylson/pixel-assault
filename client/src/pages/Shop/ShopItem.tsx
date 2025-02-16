@@ -33,7 +33,7 @@ export default function ShopItem({ product }: _props) {
       <p>{product.description}</p>
       <p>{formatNumberToUSD((product.price ?? -1) / 100)}</p>
 
-      {imageValue && <Image value={imageValue} />}
+      {/* {imageValue && <Image value={imageValue} />} */}
 
       <Button onClick={handleAddToCart} text="Add to Cart" />
     </StyledShopItem>

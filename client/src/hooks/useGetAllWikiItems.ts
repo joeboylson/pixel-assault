@@ -3,7 +3,15 @@ import { sanityClient } from "../utils/sanity";
 import { groupBy } from "lodash";
 import { SanityDocument } from "@sanity/client";
 
-const QUERY = `*[defined(slug)]{...}`;
+const QUERY = `*[defined(slug)]{
+    ...,
+    relatedMilitatyUnitType->,
+    relatedFaction->,
+    image {
+      asset->,
+      relatedAttribution->
+    }
+  }`;
 
 export function useGetAllWikiItems() {
   const [documents, setDocuments] = useState<SanityDocument[]>();
