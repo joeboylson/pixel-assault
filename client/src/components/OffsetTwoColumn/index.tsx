@@ -14,6 +14,10 @@ const StyledOffsetTwoColumn = styled.div<{ direction: _direction }>`
   grid-template-columns: ${({ direction }) => gtcFromDirection(direction)};
   gap: 24px;
   align-content: start;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 type _props = WithManyChildren & {

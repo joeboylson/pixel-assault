@@ -6,12 +6,21 @@ import { SkeletonBlock, SkeletonTextLine } from "../../components/Skeleton";
 export const StyledShop = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 48px;
   padding: 24px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 36px;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    gap: 72px;
+  }
 `;
 
 export const StyledShopItem = styled.div`
-  padding: 24px;
   display: grid;
   grid-template-columns: 1fr;
   gap: 8px;

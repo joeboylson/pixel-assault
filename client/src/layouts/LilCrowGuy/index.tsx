@@ -9,6 +9,7 @@ const StyledLilCrowGuy = styled.div`
   right: 0;
   width: 150px;
   padding: 0 0 120px 120px;
+  pointer-events: none;
 
   &.attack {
     img {

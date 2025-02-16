@@ -1,21 +1,15 @@
-import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { LayoutValues } from "../../enums";
-import { useGetWikiItemBySlug } from "../../hooks/useGetWikiItemBySlug";
 import WikiMilitaryUnitType from "../WikiMilitaryUnitType";
 import WikiFaction from "../WikiFaction";
 import WikiStoryPage from "../WikiStoryPage";
 import WikiCard from "../WikiCard";
-import { useMemo } from "react";
 import WikiWelcomePage from "../WikiWelcomePage";
-
-const { HEADER_HEIGHT, FOOTER_HEIGHT } = LayoutValues;
+import { useParams } from "react-router-dom";
+import { useMemo } from "react";
+import { useGetWikiItemBySlug } from "../../hooks/useGetWikiItemBySlug";
 
 export const StyledActiveWikiPage = styled.div`
-  padding: 72px;
-  min-height: 100vh;
-  overflow-y: scroll;
-
+  padding-right: 12px;
   display: grid;
   grid-template-columns: 1fr;
   align-content: start;

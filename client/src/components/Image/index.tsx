@@ -6,6 +6,8 @@ interface _props {
 }
 
 export default function Image({ value }: _props) {
+  console.log({ value });
+
   const { width, height } = getImageDimensions(value);
 
   const src = makeImageUrl(value);

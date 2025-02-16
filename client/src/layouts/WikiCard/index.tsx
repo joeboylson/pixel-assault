@@ -1,27 +1,34 @@
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Card, Faction, MilitaryUnitType } from "../../types/sanity.types";
 import { WikiPageProps } from "../../types/wiki";
 import { Pages } from "../../enums";
-import WikiMilitaryUnitType from "../WikiMilitaryUnitType";
-import WikiFaction from "../WikiFaction";
 import SpacedOneColumn from "../../components/SpacedOneColumn";
 import Block from "../../components/Block";
 import Image from "../../components/Image";
 import OffsetTwoColumn from "../../components/OffsetTwoColumn";
-import HyperlinkedWrapper from "../../components/HyperlinkedWrapper";
+import styled from "styled-components";
+import Details from "../../components/Details";
+
+const CardWrapper = styled.div`
+  box-shadow: black 15px 25px 35px -15px;
+  border-radius: 8px;
+  overflow: hidden;
+  height: fit-content;
+  max-width: 300px;
+  margin: 0 auto;
+
+  img {
+    display: block;
+  }
+`;
 
 export default function WikiCard({ document }: WikiPageProps) {
   const card = (document as Card) ?? null;
 
   if (!card) return <Navigate to={Pages.WIKI} />;
 
-  // card info
-  const { name, actionEconomy, cardId, cost, image, is_commander } = card;
-
-  // relations
+  const { name, actionEconomy, cardId, cost, image } = card;
   const { relatedMilitatyUnitType, relatedFaction } = card;
-
-  // block content
   const { behindTheScenes, lore } = card;
 
   const _relatedMilitatyUnitType =
@@ -32,32 +39,59 @@ export default function WikiCard({ document }: WikiPageProps) {
   return (
     <SpacedOneColumn>
       <OffsetTwoColumn direction="left">
-        {image?.asset && <Image value={image.asset} />}
+        <CardWrapper>
+          {image?.asset && <Image value={image.asset} />}
+        </CardWrapper>
 
         <SpacedOneColumn>
           <h2>{name}</h2>
-          <div>
-            <p>Action Economy: {actionEconomy}</p>
-            <p>Card ID: {cardId}</p>
-            <p>Cost: {cost}</p>
-            <p>Is Commander: {is_commander ? "Yes" : "No"}</p>
-          </div>
+          <Details
+            details={[
+              ["Card ID:", cardId],
+              ["Action Economy:", actionEconomy],
+              ["Cost:", cost],
+              [
+                "Faction:",
+                _relatedFaction ? (
+                  <Link
+                    to={`${Pages.WIKI}/${_relatedFaction._type}/${_relatedFaction.slug?.current}`}
+                  >
+                    {_relatedFaction.name}
+                  </Link>
+                ) : (
+                  "No Faction"
+                ),
+              ],
+              [
+                "Military Unit:",
+                _relatedMilitatyUnitType ? (
+                  <Link
+                    to={`${Pages.WIKI}/${_relatedMilitatyUnitType._type}/${_relatedMilitatyUnitType.slug?.current}`}
+                  >
+                    {_relatedMilitatyUnitType.name}
+                  </Link>
+                ) : (
+                  "No Faction"
+                ),
+              ],
+            ]}
+          />
         </SpacedOneColumn>
       </OffsetTwoColumn>
 
-      <div>
+      <SpacedOneColumn>
         <h3>Lore:</h3>
         <Block content={lore} />
-      </div>
+      </SpacedOneColumn>
 
-      <div>
+      <SpacedOneColumn>
         <h3>Behind the scenes:</h3>
         <Block content={behindTheScenes} />
-      </div>
+      </SpacedOneColumn>
 
-      {_relatedMilitatyUnitType && (
+      {/* {_relatedMilitatyUnitType && (
         <HyperlinkedWrapper
-          to={`${Pages.WIKI}/${_relatedMilitatyUnitType._type}/${_relatedMilitatyUnitType.slug?.current}`}
+          
           linkLabel={`Go to ${_relatedMilitatyUnitType.name}`}
         >
           <WikiMilitaryUnitType document={_relatedMilitatyUnitType} />
@@ -65,13 +99,10 @@ export default function WikiCard({ document }: WikiPageProps) {
       )}
 
       {_relatedFaction && (
-        <HyperlinkedWrapper
-          to={`${Pages.WIKI}/${_relatedFaction._type}/${_relatedFaction.slug?.current}`}
-          linkLabel={`Go to ${_relatedFaction.name}`}
-        >
+        <HyperlinkedWrapper linkLabel={`Go to ${_relatedFaction.name}`}>
           <WikiFaction document={_relatedFaction} />
         </HyperlinkedWrapper>
-      )}
+      )} */}
     </SpacedOneColumn>
   );
 }

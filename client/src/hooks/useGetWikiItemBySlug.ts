@@ -15,7 +15,11 @@ export function useGetWikiItemBySlug(slug: string) {
       const query = `*[slug.current=="${slug}"]{
         ...,
         relatedMilitatyUnitType->,
-        relatedFaction->
+        relatedFaction->,
+        image {
+          asset->,
+          relatedAttribution->
+        }
       }
       `;
 

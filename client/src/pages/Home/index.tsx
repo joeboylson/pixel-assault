@@ -1,17 +1,16 @@
-import { useEffect } from "react";
 import Carousel from "../../components/Carousel";
-import { useThemeContext } from "../../context/ThemeContext";
 import PageMaxWithContainer from "../../layouts/PageMaxWidthContainer";
 import PageWrapper from "../../layouts/PageWrapper";
 import SpacedOneColumn from "../../components/SpacedOneColumn";
 import OffsetTwoColumn from "../../components/OffsetTwoColumn";
 import styled from "styled-components";
 import BannerArt from "../../assets/images/BannerArt.png";
+import { useEffect } from "react";
+import { useThemeContext } from "../../context/ThemeContext";
 import { LayoutValues } from "../../enums";
-import Button from "../../components/Button";
 
 const HomeContentWrapper = styled.div`
-  padding-top: 50px;
+  padding-top: 48px;
 `;
 
 const Banner = styled.div`

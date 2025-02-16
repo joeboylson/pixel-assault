@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { WithChildren } from "../../types";
-import { LayoutValues } from "../../enums/layout";
 import { WithBackgroundColorTransitionCSS } from "../../utils/transition";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -12,7 +11,6 @@ const StyledPageWrapper = styled.div`
   grid-template-columns: 1fr;
   width: 100vw;
   min-height: 100vh;
-  overflow-x: hidden;
   background-color: var(--themeBackground);
 
   * {

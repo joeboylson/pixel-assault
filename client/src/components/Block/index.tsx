@@ -5,12 +5,24 @@ import Image from "../Image";
 import { SpacedOneColumnCSS } from "../SpacedOneColumn";
 
 const StyledBlock = styled.div`
-  background-color: rgba(255, 255, 255, 0.25);
+  ${SpacedOneColumnCSS}
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 24px;
   border-radius: 8px;
-  max-width: 500px;
+  gap: 8px;
+  border: 1px solid white;
 
-  ${SpacedOneColumnCSS}
+  img {
+    max-width: 400px;
+    margin: auto;
+  }
+
+  p,
+  p * {
+    font-soze: 18px;
+    line-height: calc(18px * 1.5);
+    color: #ddd;
+  }
 `;
 
 interface _props {
@@ -18,6 +30,8 @@ interface _props {
 }
 
 export default function Block({ content }: _props) {
+  console.log({ content });
+
   return (
     <StyledBlock>
       <PortableText

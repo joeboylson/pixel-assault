@@ -36,6 +36,18 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      fields: [
+        {
+          name: 'relatedAttribution',
+          title: 'Attribution',
+          type: 'reference',
+          to: [{type: 'attribution'}],
+          initialValue: {
+            _type: 'reference',
+            _ref: 'dfb89f63-07b0-4bcd-aa5e-ee19b0157e66',
+          },
+        },
+      ],
     },
     {
       name: 'relatedFaction',
@@ -48,11 +60,6 @@ export default defineType({
       title: 'Militaty Unit Type',
       type: 'reference',
       to: [{type: 'militaryUnitType'}],
-    },
-    {
-      name: 'is_commander',
-      title: 'Is Commander?',
-      type: 'boolean',
     },
     {
       name: 'cost',

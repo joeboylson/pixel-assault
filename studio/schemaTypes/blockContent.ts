@@ -51,6 +51,18 @@ export default defineType({
     defineArrayMember({
       type: 'image',
       options: {hotspot: true},
+      fields: [
+        {
+          name: 'relatedAttribution',
+          title: 'Attribution',
+          type: 'reference',
+          to: [{type: 'attribution'}],
+          initialValue: {
+            _type: 'reference',
+            _ref: 'dfb89f63-07b0-4bcd-aa5e-ee19b0157e66' /* This could be the id of Jessica Chastain */,
+          },
+        },
+      ],
     }),
   ],
 })
