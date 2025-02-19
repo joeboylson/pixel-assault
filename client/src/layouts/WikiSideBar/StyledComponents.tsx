@@ -4,7 +4,7 @@ import { MinimalButtonCSS } from "../../components/MinimalButton";
 
 export const StyledWikiSideBar = styled.div`
   position: sticky;
-  top: 50px;
+  top: 0;
   display: grid;
   grid-template-columns: 1fr;
   align-content: start;

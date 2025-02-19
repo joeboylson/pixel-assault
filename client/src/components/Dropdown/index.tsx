@@ -4,7 +4,6 @@ const StyledDropdown = styled.select`
   display: block;
   padding: 4px 8px;
   width: calc(100%);
-  font-size: 16px;
   border: 2px solid #ccc;
   border-radius: 5px;
   outline: none;

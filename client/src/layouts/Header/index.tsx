@@ -12,6 +12,7 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export const NavWrapper = styled.div`

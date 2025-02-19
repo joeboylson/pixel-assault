@@ -90,7 +90,7 @@ export const ProgressBarValue = styled.div`
   filter: grayscale(1);
 
   p {
-    font-size: 24px;
+    font-size: 25px;
   }
 `;
 

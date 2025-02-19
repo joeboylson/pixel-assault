@@ -12,10 +12,5 @@ const sanityConfig: ClientConfig = {
 export const sanityClient = createClient(sanityConfig);
 
 export const makeImageUrl = (sanityImageSource: SanityImageSource) => {
-  return urlBuilder(sanityClient)
-    .image(sanityImageSource)
-    .width(800)
-    .fit("max")
-    .auto("format")
-    .url();
+  return urlBuilder(sanityClient).image(sanityImageSource).fit("max").url();
 };

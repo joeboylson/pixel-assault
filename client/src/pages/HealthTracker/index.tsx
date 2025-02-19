@@ -72,7 +72,7 @@ export function HealthTracker() {
   }, [selectedPlayer]);
 
   return (
-    <PageWrapper hideHeaderAndFooter>
+    <PageWrapper>
       <PageMaxWithContainer>
         <StyledHealthTracker>
           <ControlsWrapper>

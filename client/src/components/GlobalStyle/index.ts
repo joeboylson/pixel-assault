@@ -22,9 +22,8 @@ export const GlobalStyle = createGlobalStyle`
     padding-left: 40px;
   }
 
-  p, b, i, button {
-    font-size: 16px;
-    -webkit-font-smoothing: none;
+  p, b, i, a, button {
+    font-size: 20px;
   }
 
   a {
@@ -39,18 +38,17 @@ export const GlobalStyle = createGlobalStyle`
 
   h3, h2, h1 {
     font-family: PixelOperator8;
-    -webkit-font-smoothing: none;
   }
 
   h3 {
-    font-size: 21px;
+    font-size: 25px;
   }
   
   h2 {
-    font-size: 34px;
+    font-size: 39px;
   }
   
   h1 {
-    font-size: 55px;
+    font-size: 59px;
   }
 `;

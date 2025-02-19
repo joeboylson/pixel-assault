@@ -16,13 +16,6 @@ const StyledBlock = styled.div`
     max-width: 400px;
     margin: auto;
   }
-
-  p,
-  p * {
-    font-soze: 18px;
-    line-height: calc(18px * 1.5);
-    color: #ddd;
-  }
 `;
 
 interface _props {
