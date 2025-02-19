@@ -7,19 +7,29 @@ export const StyledAddEditPlayer = styled.div`
   gap: 24px;
 
   input {
-    border: 1px solid white;
+    border: 0;
     line-height: 32px;
     padding: 0 12px;
     outline: none;
-    background-color: transparent;
+    background-color: rgba(255, 255, 255, 0.25);
     color: white;
     width: calc(100% - 24px - 2px);
     margin-top: 4px;
+    border-radius: 100px;
 
     &::placeholder {
       color: rgba(255, 255, 255, 0.8);
     }
   }
+`;
+
+export const StepWrapper = styled.div`
+  border: 1px solid white;
+  padding: 12px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
 `;
 
 export const StyledTeamSelection = styled.div`
@@ -54,6 +64,7 @@ export const TabsWrapper = styled.div`
     width: 50%;
     transition-duration: 300ms;
     transition-timing-function: cubic-bezier(0.08, 0.82, 0.17, 1);
+    border-radius: 100px;
   }
 
   &.highlight-left::after {

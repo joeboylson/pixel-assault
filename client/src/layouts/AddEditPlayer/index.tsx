@@ -11,6 +11,7 @@ import { getFactionBackground, getFactionIcon } from "../../utils/faction";
 import {
   FactionButton,
   FactionButtonWrapper,
+  StepWrapper,
   StyledAddEditPlayer,
 } from "./StyledComponents";
 
@@ -60,40 +61,45 @@ export default function AddEditPlayer({ player, handleAfterSubmit }: _props) {
     <StyledAddEditPlayer>
       <h3>{isNew ? "Add New" : "Edit"} Player</h3>
 
-      <div>
+      <StepWrapper>
         <p>What do we call you?</p>
         <input
           type="text"
           placeholder="Your Name"
           onChange={(e) => setName(e.target.value)}
         />
-      </div>
+      </StepWrapper>
 
-      <TeamSelection onChange={setTeam} selectedTeam={team} />
+      <StepWrapper>
+        <p>Choose a team, or make a new one</p>
+        <TeamSelection onChange={setTeam} selectedTeam={team} />
+      </StepWrapper>
 
-      <FactionButtonWrapper backgroundsrc={FactionBackgroundSrc}>
-        <p>
-          <b>Choose a faction:</b>
-        </p>
-        {(factions ?? []).map((_f) => {
-          const f = _f as Faction;
-          const className = f === faction ? "selected" : "";
-          const iconSrc = getFactionIcon(f.slug?.current ?? "");
+      <StepWrapper>
+        <FactionButtonWrapper backgroundsrc={FactionBackgroundSrc}>
+          <p>
+            <b>Choose a faction:</b>
+          </p>
+          {(factions ?? []).map((_f) => {
+            const f = _f as Faction;
+            const className = f === faction ? "selected" : "";
+            const iconSrc = getFactionIcon(f.slug?.current ?? "");
 
-          return (
-            <FactionButton
-              onClick={() => setFaction(f as Faction)}
-              className={className}
-              key={f._id}
-            >
-              <div>
-                <img src={iconSrc} alt="" />
-                {f.name}
-              </div>
-            </FactionButton>
-          );
-        })}
-      </FactionButtonWrapper>
+            return (
+              <FactionButton
+                onClick={() => setFaction(f as Faction)}
+                className={className}
+                key={f._id}
+              >
+                <div>
+                  <img src={iconSrc} alt="" />
+                  {f.name}
+                </div>
+              </FactionButton>
+            );
+          })}
+        </FactionButtonWrapper>
+      </StepWrapper>
 
       <Button onClick={handleSave} text="Save" />
     </StyledAddEditPlayer>

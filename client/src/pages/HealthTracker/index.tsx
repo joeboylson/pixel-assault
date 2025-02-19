@@ -17,12 +17,17 @@ import {
 } from "../../utils/faction";
 
 import {
-  ControlsWrapper,
+  AddNewPlayerButton,
+  PlayersGridWrapper,
   FactionBanner,
   HealthSlidersWrapper,
+  NoTeamsWrapper,
   StyledHealthTracker,
+  PlayerButton,
 } from "./StyledComponents";
 import { ControlIcon } from "../../components/HealthSlider/StyledComponents";
+import { Player } from "../../types";
+import { Coins, Heart } from "@phosphor-icons/react";
 
 export function HealthTracker() {
   const {
@@ -34,24 +39,10 @@ export function HealthTracker() {
   const { useDefaultTheme } = useThemeContext();
   useEffect(useDefaultTheme, [useDefaultTheme]);
 
-  const [selectedTeam, setSelectedTeam] = useState<string>();
-  const [selectedPlayerName, setSelectedPlayerName] = useState<string>();
-
-  const handleChangeTeam = (_selectedTeam: string) => {
-    setSelectedTeam(_selectedTeam);
-    setSelectedPlayerName("");
-  };
-
-  const {
-    players,
-    teams,
-    isEmpty: noExistingTeams,
-  } = usePlayerTrackerContext();
-
-  const playersOnTeam = players.filter((p) => p.team === selectedTeam) ?? [];
-  const teamPlayerNames = playersOnTeam.map((p) => p.name);
-
-  const selectedPlayer = players.find((p) => p.name === selectedPlayerName);
+  const { players, isEmpty: noExistingTeams } = usePlayerTrackerContext();
+  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(
+    noExistingTeams ? null : players[0]
+  );
 
   const FactionBackgroundSrc = useMemo(() => {
     if (!selectedPlayer) return getFactionBackground("");
@@ -71,54 +62,103 @@ export function HealthTracker() {
     return getFactionBanner(factionSlug);
   }, [selectedPlayer]);
 
+  if (noExistingTeams) {
+  }
+
   return (
     <PageWrapper>
       <PageMaxWithContainer>
-        <StyledHealthTracker>
-          <ControlsWrapper>
-            {addNewPlayerModalIsOpen && (
-              <Modal headless>
-                <AddEditPlayer handleAfterSubmit={closeAddNewPlayerModal} />
-              </Modal>
-            )}
-            <MinimalButton onClick={openAddNewPlayerModal}>
-              <ControlIcon src={Sum} />
-            </MinimalButton>
-            <Dropdown
-              options={teams}
-              onChange={handleChangeTeam}
-              selectedOption={selectedTeam}
-              key={`teamselect-${selectedTeam}`}
-              disabled={noExistingTeams}
-            />
-            <Dropdown
-              options={teamPlayerNames}
-              onChange={setSelectedPlayerName}
-              selectedOption={selectedPlayerName}
-              key={`playerselect-${selectedTeam}`}
-              disabled={noExistingTeams}
-            />
-          </ControlsWrapper>
+        <StyledHealthTracker data-id="StyledHealthTracker">
+          {/**
+           *
+           * ADD NEW PLAYER MODAL
+           *
+           */}
+          {addNewPlayerModalIsOpen && (
+            <Modal headless>
+              <AddEditPlayer handleAfterSubmit={closeAddNewPlayerModal} />
+            </Modal>
+          )}
 
-          <HealthSlidersWrapper
-            data-id="HealthSlidersWrapper"
-            backgroundsrc={FactionBackgroundSrc}
-          >
-            {FactionIconSrc && FactionBannerSrc && (
-              <FactionBanner
-                iconsrc={FactionIconSrc}
-                bannersrc={FactionBannerSrc}
-              />
-            )}
+          {/**
+           *
+           * IF NO EXISTING TEAMS
+           *
+           */}
+          {noExistingTeams && (
+            <NoTeamsWrapper>
+              <h3>Welcome to the Health Tracker page.</h3>
+              <p>
+                On this page, you can create each of the players in the game -
+                giving them a name, a team, and a faction.
+              </p>
+              <p>Players can create a new team, or join an existing one.</p>
+              <p>
+                Each player can also choose a Faction, regardless of team
+                association.
+              </p>
+              <AddNewPlayerButton
+                onClick={openAddNewPlayerModal}
+                className="large"
+              >
+                <ControlIcon src={Sum} />
+                Add a New Player
+              </AddNewPlayerButton>
+            </NoTeamsWrapper>
+          )}
 
-            {players.map((player) => {
-              const readonly = player.id !== selectedPlayer?.id;
+          {/**
+           *
+           * SHOW BOARD
+           *
+           */}
 
-              return (
-                <HealthSlider {...player} key={player.id} readonly={readonly} />
-              );
-            })}
-          </HealthSlidersWrapper>
+          {!noExistingTeams && (
+            <>
+              <PlayersGridWrapper>
+                <AddNewPlayerButton onClick={openAddNewPlayerModal}>
+                  <ControlIcon src={Sum} />
+                  Add a New Player
+                </AddNewPlayerButton>
+                {players.map((p) => {
+                  return (
+                    <PlayerButton onClick={() => setSelectedPlayer(p)}>
+                      <p>{p.name}</p>
+                      <div>
+                        <Heart size={20} color="red" />
+                        <p>{p?.healthAmount}</p>
+                      </div>
+                      <p>Team: {p.team}</p>
+                      <div>
+                        <Coins size={20} color="yellow" />
+                        {p?.goldAmount}
+                      </div>
+                    </PlayerButton>
+                  );
+                })}
+              </PlayersGridWrapper>
+
+              {selectedPlayer && (
+                <HealthSlidersWrapper
+                  data-id="HealthSlidersWrapper"
+                  backgroundsrc={FactionBackgroundSrc}
+                >
+                  {FactionIconSrc && FactionBannerSrc && (
+                    <FactionBanner
+                      iconsrc={FactionIconSrc}
+                      bannersrc={FactionBannerSrc}
+                    />
+                  )}
+
+                  <HealthSlider
+                    {...selectedPlayer}
+                    key={selectedPlayer.id}
+                    readonly={false}
+                  />
+                </HealthSlidersWrapper>
+              )}
+            </>
+          )}
         </StyledHealthTracker>
       </PageMaxWithContainer>
     </PageWrapper>

@@ -36,10 +36,10 @@ export default function TeamSelection({ onChange, selectedTeam }: _props) {
           onClick={showExistingTeamsOptions}
           disabled={noExistingTeams}
         >
-          Join Existing Team
+          Join Team
         </MinimalButton>
         <MinimalButton onClick={showCustomNameInput}>
-          Make A New Team
+          Make New Team
         </MinimalButton>
       </TabsWrapper>
 

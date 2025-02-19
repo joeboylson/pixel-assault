@@ -30,6 +30,14 @@ export const NavWrapper = styled.div`
       color: var(--themeAccent1);
     }
   }
+
+  @media (max-width: 600px) {
+    gap: 18px;
+
+    a {
+      font-size: 16px !important;
+    }
+  }
 `;
 
 export const CheckoutWrapper = styled.div`

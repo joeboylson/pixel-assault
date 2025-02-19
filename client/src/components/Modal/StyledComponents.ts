@@ -45,6 +45,12 @@ export const Dialog = styled.div`
   border-radius: 8px;
 
   overflow-y: auto;
+
+  @media (max-width: 600px) {
+    padding: 12px;
+    width: calc(100vw - 36px);
+    height: calc(100vh - 36px);
+  }
 `;
 
 export const DialogueExitButton = styled.button`

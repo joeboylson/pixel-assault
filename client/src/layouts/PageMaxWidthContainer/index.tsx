@@ -4,7 +4,7 @@ import { WithChildren } from "../../types";
 const StyledPageMaxWithContainer = styled.div`
   max-width: 1000px;
   margin: 0 auto;
-  padding: 72px 24px;
+  padding: 24px;
 
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
