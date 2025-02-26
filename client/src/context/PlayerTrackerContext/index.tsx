@@ -33,6 +33,10 @@ const contextDefaultValue = {
   teams: [] as string[],
   isEmpty: true,
   addNewPlayer: (_: Player) => {},
+  decrementPlayerHealth: (_: string) => {},
+  incrementPlayerHealth: (_: string) => {},
+  decrementPlayerGold: (_: string) => {},
+  incrementPlayerGold: (_: string) => {},
 };
 
 export const PlayerTrackerContext = createContext(contextDefaultValue);
@@ -65,11 +69,76 @@ export default function PlayerTrackerWrapper({ children }: WithChildren) {
     [players]
   );
 
+  const _changePlayerHealth = useCallback(
+    (playerId: string, amount: number) => {
+      return players?.map((p) => {
+        if (p.id === playerId) {
+          const healthAmount = p.healthAmount + amount;
+          if (healthAmount > 100) return { ...p, healthAmount: 100 };
+          if (healthAmount < 0) return { ...p, healthAmount: 0 };
+          return { ...p, healthAmount };
+        }
+        return p;
+      });
+    },
+    [players]
+  );
+
+  const decrementPlayerHealth = useCallback(
+    (playerId: string) => {
+      const _players = _changePlayerHealth(playerId, -1);
+      setPlayers(_players);
+    },
+    [_changePlayerHealth]
+  );
+
+  const incrementPlayerHealth = useCallback(
+    (playerId: string) => {
+      const _players = _changePlayerHealth(playerId, 1);
+      setPlayers(_players);
+    },
+    [_changePlayerHealth]
+  );
+
+  const _changePlayerGold = useCallback(
+    (playerId: string, amount: number) => {
+      return players?.map((p) => {
+        if (p.id === playerId) {
+          const goldAmount = p.goldAmount + amount;
+          if (goldAmount < 0) return { ...p, goldAmount: 0 };
+          return { ...p, goldAmount };
+        }
+        return p;
+      });
+    },
+    [players]
+  );
+
+  const decrementPlayerGold = useCallback(
+    (playerId: string) => {
+      const _players = _changePlayerGold(playerId, -1);
+      setPlayers(_players);
+    },
+    [_changePlayerGold]
+  );
+
+  const incrementPlayerGold = useCallback(
+    (playerId: string) => {
+      const _players = _changePlayerGold(playerId, 1);
+      setPlayers(_players);
+    },
+    [_changePlayerGold]
+  );
+
   const value = {
     players: (players ?? []) as Player[],
     teams,
     isEmpty,
     addNewPlayer,
+    decrementPlayerHealth,
+    incrementPlayerHealth,
+    decrementPlayerGold,
+    incrementPlayerGold,
   };
 
   return (

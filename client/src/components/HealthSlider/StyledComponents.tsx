@@ -6,23 +6,8 @@ export const StyledHealthSlider = styled.div`
   display: grid;
   gap: 12px;
   grid-template-columns: ${HEALTH_SLIDER_HEIGHT}px 1fr ${HEALTH_SLIDER_HEIGHT}px;
-  margin: 0 12px;
-  padding: 32px 12px;
-  width: calc(100% - 48px);
+  width: 100%;
   align-items: center;
-  border: 1px solid white;
-  border-radius: 8px;
-
-  &.readonly {
-    width: calc(100% - 48px);
-    grid-template-columns: 1fr;
-    padding: 12px 12px;
-    opacity: 0.68;
-  }
-`;
-
-export const PlayerName = styled.h3`
-  grid-column: span 3;
 `;
 
 interface ProgressBarProps {

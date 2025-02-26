@@ -1,13 +1,10 @@
 import { Player } from "../../types";
-
+import { usePlayerTrackerContext } from "../../context/PlayerTrackerContext";
 import Minus from "../../assets/images/icons/Minus.svg";
 import Sum from "../../assets/images/icons/Sum.svg";
 import Skull from "../../assets/images/icons/Skull.svg";
-import Coin from "../../assets/images/icons/Coin.svg";
-
 import {
   ControlIcon,
-  PlayerName,
   ProgressBar,
   ProgressBarValue,
   SliderControl,
@@ -19,21 +16,22 @@ type _props = Player & {
   readonly: boolean;
 };
 
-export function HealthSlider({
+export default function HealthSlider({
   id,
-  goldAmount,
+  goldAmount: _,
   healthAmount,
   readonly,
-  name,
+  name: __,
 }: _props) {
   const className = readonly ? "readonly" : "";
 
-  return (
-    <StyledHealthSlider key={id} className={className}>
-      <PlayerName>{name}</PlayerName>
+  const { incrementPlayerHealth, decrementPlayerHealth } =
+    usePlayerTrackerContext();
 
+  return (
+    <StyledHealthSlider key={`healthslider-${id}`} className={className}>
       {!readonly && (
-        <SliderControl onClick={console.log}>
+        <SliderControl onClick={() => decrementPlayerHealth(id)}>
           {healthAmount > 0 ? (
             <ControlIcon src={Minus} />
           ) : (
@@ -49,7 +47,7 @@ export function HealthSlider({
       </ProgressBar>
 
       {!readonly && (
-        <SliderControl onClick={console.log}>
+        <SliderControl onClick={() => incrementPlayerHealth(id)}>
           <ControlIcon src={Sum} />
         </SliderControl>
       )}

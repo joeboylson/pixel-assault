@@ -2,10 +2,7 @@ import PageWrapper from "../../layouts/PageWrapper";
 import PageMaxWithContainer from "../../layouts/PageMaxWidthContainer";
 import Modal from "../../components/Modal";
 import AddEditPlayer from "../../layouts/AddEditPlayer";
-import MinimalButton from "../../components/MinimalButton";
-import Dropdown from "../../components/Dropdown";
 import Sum from "../../assets/images/icons/Sum.svg";
-import { HealthSlider } from "../../components/HealthSlider";
 import { useEffect, useMemo, useState } from "react";
 import { useThemeContext } from "../../context/ThemeContext";
 import { useToggle } from "../../hooks/useToggle";
@@ -24,10 +21,12 @@ import {
   NoTeamsWrapper,
   StyledHealthTracker,
   PlayerButton,
+  PlayerName,
 } from "./StyledComponents";
 import { ControlIcon } from "../../components/HealthSlider/StyledComponents";
-import { Player } from "../../types";
 import { Coins, Heart } from "@phosphor-icons/react";
+import HealthSlider from "../../components/HealthSlider";
+import GoldSlider from "../../components/GoldSlider";
 
 export function HealthTracker() {
   const {
@@ -40,9 +39,11 @@ export function HealthTracker() {
   useEffect(useDefaultTheme, [useDefaultTheme]);
 
   const { players, isEmpty: noExistingTeams } = usePlayerTrackerContext();
-  const [selectedPlayer, setSelectedPlayer] = useState<Player | null>(
-    noExistingTeams ? null : players[0]
+  const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(
+    noExistingTeams ? null : players[0].id
   );
+
+  const selectedPlayer = players.find((p) => p.id === selectedPlayerId);
 
   const FactionBackgroundSrc = useMemo(() => {
     if (!selectedPlayer) return getFactionBackground("");
@@ -61,9 +62,6 @@ export function HealthTracker() {
     const factionSlug = selectedPlayer.faction?.slug?.current ?? "";
     return getFactionBanner(factionSlug);
   }, [selectedPlayer]);
-
-  if (noExistingTeams) {
-  }
 
   return (
     <PageWrapper>
@@ -121,8 +119,13 @@ export function HealthTracker() {
                   Add a New Player
                 </AddNewPlayerButton>
                 {players.map((p) => {
+                  const className = p.id === selectedPlayer?.id ? "active" : "";
+
                   return (
-                    <PlayerButton onClick={() => setSelectedPlayer(p)}>
+                    <PlayerButton
+                      onClick={() => setSelectedPlayerId(p.id)}
+                      className={className}
+                    >
                       <p>{p.name}</p>
                       <div>
                         <Heart size={20} color="red" />
@@ -149,12 +152,10 @@ export function HealthTracker() {
                       bannersrc={FactionBannerSrc}
                     />
                   )}
-
-                  <HealthSlider
-                    {...selectedPlayer}
-                    key={selectedPlayer.id}
-                    readonly={false}
-                  />
+                  <PlayerName>{selectedPlayer.name}</PlayerName>
+                  <HealthSlider {...selectedPlayer} readonly={false} />
+                  <hr />
+                  <GoldSlider {...selectedPlayer} readonly={false} />
                 </HealthSlidersWrapper>
               )}
             </>

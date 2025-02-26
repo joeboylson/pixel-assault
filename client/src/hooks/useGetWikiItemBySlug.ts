@@ -28,8 +28,6 @@ export function useGetWikiItemBySlug(slug: string) {
       }
       `;
 
-      console.log({ query });
-
       sanityClient
         .fetch(query)
         .then((result) => setDocument(result[0]))
