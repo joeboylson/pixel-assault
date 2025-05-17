@@ -28,7 +28,7 @@ root.render(
       >
         <PageTransitionWrapper>
           <PlayerTrackerWrapper>
-            {/* <LilCrowGuy /> */}
+            <LilCrowGuy />
             <RouterProvider router={router} />
           </PlayerTrackerWrapper>
         </PageTransitionWrapper>

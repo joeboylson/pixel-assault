@@ -52,7 +52,7 @@ export default function TeamSelection({ onChange, selectedTeam }: _props) {
 
             return (
               <TeamButton className={className} onClick={() => onChange(team)}>
-                {team} ({playersOnTeam} players)
+                Join Team {team} ({playersOnTeam} players)
               </TeamButton>
             );
           })}

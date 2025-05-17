@@ -4,7 +4,7 @@ import { MinimalButtonCSS } from "../../components/MinimalButton";
 
 export const StyledWikiSideBar = styled.div`
   position: sticky;
-  top: 0;
+  top: 12px;
   display: grid;
   grid-template-columns: 1fr;
   align-content: start;
@@ -48,6 +48,7 @@ export const WikiSideBarSection = styled.div`
 
 export const MobileWikiMenuButton = styled.button`
   display: none;
+  line-height: 32px;
 
   @media (max-width: 800px) {
     ${MinimalButtonCSS}

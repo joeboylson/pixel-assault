@@ -6,8 +6,10 @@ import { SkeletonBlock, SkeletonTextLine } from "../../components/Skeleton";
 export const StyledShop = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  align-content: start;
   gap: 48px;
   padding: 24px;
+  min-height: calc(100vh - 50px - 48px - 48px - 50px);
 
   @media (max-width: 900px) {
     grid-template-columns: repeat(2, 1fr);

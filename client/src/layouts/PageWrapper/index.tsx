@@ -14,7 +14,6 @@ const StyledPageWrapper = styled.div`
   grid-template-columns: 1fr;
   grid-template-rows: ${HEADER_HEIGHT}px calc(100vh - ${HEADER_HEIGHT}px);
   width: 100vw;
-  min-height: 100vh;
   background-color: var(--themeBackground);
 
   * {
@@ -22,17 +21,20 @@ const StyledPageWrapper = styled.div`
   }
 `;
 
-const Content = styled.div`
-  overflow-y: auto;
-  padding-top: 50px;
+const Content = styled.div<{ nopadding: boolean }>`
+  padding-top: ${(props) => (props.nopadding ? 0 : 50)}px;
 `;
 
-export default function PageWrapper({ children }: WithChildren) {
+type _props = WithChildren & {
+  nopadding?: boolean;
+};
+
+export default function PageWrapper({ children, nopadding = false }: _props) {
   return (
     <StyledPageWrapper data-id="PageWrapper">
       <Header />
 
-      <Content data-id="PageWrapper.Content">
+      <Content data-id="PageWrapper.Content" nopadding={nopadding}>
         {children}
         <Footer />
       </Content>

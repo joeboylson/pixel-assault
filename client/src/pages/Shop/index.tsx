@@ -34,7 +34,7 @@ export function Shop() {
   return (
     <PageWrapper>
       <PageMaxWithContainer>
-        <StyledShop>
+        <StyledShop data-id="StyledShop">
           {loading && <SkeletonProductsGrid />}
 
           {products &&

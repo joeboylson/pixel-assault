@@ -29,6 +29,11 @@ export const StyledWiki = styled.div`
   @media (max-width: 800px) {
     grid-template-columns: 1fr;
     gap: 24px;
+
+    img {
+      max-width: 300px;
+      margin: auto;
+    }
   }
 `;
 

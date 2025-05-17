@@ -85,6 +85,7 @@ export const TeamButton = styled.button`
   ${MinimalButtonCSS}
   background-color: rgba(255, 255, 255, 0.25);
   border: 1px solid transparent;
+  border-radius: 100px;
   margin-top: 4px;
   width: 100%;
   line-height: 32px;
