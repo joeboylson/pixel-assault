@@ -12,6 +12,7 @@ type _props = WithChildren & {
   buttonDisabled?: boolean;
   handleOnClose?: () => void;
   headless?: boolean;
+  fillHeight?: boolean;
 };
 
 export default function Modal({
@@ -21,6 +22,7 @@ export default function Modal({
   buttonDisabled,
   handleOnClose,
   headless,
+  fillHeight = true,
 }: _props) {
   const {
     disable: closeDialog,
@@ -38,7 +40,10 @@ export default function Modal({
     event.stopPropagation();
   };
 
-  const className = compact([isOpen && "is-open"]).join(" ");
+  const className = compact([
+    isOpen && "is-open",
+    fillHeight && "fill-height",
+  ]).join(" ");
 
   return (
     <>

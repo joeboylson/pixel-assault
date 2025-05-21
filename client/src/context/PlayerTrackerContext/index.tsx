@@ -33,6 +33,7 @@ const contextDefaultValue = {
   teams: [] as string[],
   isEmpty: true,
   addNewPlayer: (_: Player) => {},
+  removePlayer: (_: Player) => {},
   decrementPlayerHealth: (_: string) => {},
   incrementPlayerHealth: (_: string) => {},
   decrementPlayerGold: (_: string) => {},
@@ -64,6 +65,14 @@ export default function PlayerTrackerWrapper({ children }: WithChildren) {
   const addNewPlayer = useCallback(
     (player: Player) => {
       const _players = [...(players ?? []), player];
+      setPlayers(_players);
+    },
+    [players]
+  );
+
+  const removePlayer = useCallback(
+    (player: Player) => {
+      const _players = (players ?? []).filter((p) => p.id !== player.id);
       setPlayers(_players);
     },
     [players]
@@ -135,6 +144,7 @@ export default function PlayerTrackerWrapper({ children }: WithChildren) {
     teams,
     isEmpty,
     addNewPlayer,
+    removePlayer,
     decrementPlayerHealth,
     incrementPlayerHealth,
     decrementPlayerGold,

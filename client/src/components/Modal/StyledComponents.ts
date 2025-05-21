@@ -30,21 +30,22 @@ export const DialogWrapper = styled.div`
 
 export const Dialog = styled.div`
   width: calc(100vw - 72px);
-  height: calc(100vh - 72px - 72px);
   max-width: 500px;
   top: 0;
   left: 0;
   background-color: rgba(255, 255, 255, 0.25);
   padding: 24px;
-
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 36px 1fr;
   gap: 36px;
   align-content: start;
   border-radius: 8px;
-
   overflow-y: auto;
+
+  &.fill-height {
+    height: calc(100vh - 72px - 72px);
+  }
 
   @media (max-width: 600px) {
     padding: 12px;

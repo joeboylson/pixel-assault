@@ -148,3 +148,25 @@ export const FactionBanner = styled.div<{ iconsrc: string; bannersrc: string }>`
 export const PlayerName = styled.h3`
   padding-left: 12px;
 `;
+
+export const RemovePlayerIcon = styled.button<{ backgroundsrc: string }>`
+  background-image: url("${(props) => props.backgroundsrc}");
+  background-position: center;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  height: 24px;
+  margin: 12px;
+  border: 0;
+  background-color: transparent;
+`;
+
+export const RemoveButton = styled.button`
+  background-color: rgb(192, 0, 0);
+  line-height: 36px;
+  border: 0;
+  outline: none;
+  border-radius: 24px;
+`;

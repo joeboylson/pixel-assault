@@ -22,11 +22,16 @@ import {
   StyledHealthTracker,
   PlayerButton,
   PlayerName,
+  RemovePlayerIcon,
+  RemoveButton,
 } from "./StyledComponents";
 import { ControlIcon } from "../../components/HealthSlider/StyledComponents";
 import { Coins, Heart } from "@phosphor-icons/react";
 import HealthSlider from "../../components/HealthSlider";
 import GoldSlider from "../../components/GoldSlider";
+import Skull from "../../assets/images/icons/Skull.svg";
+import SpacedOneColumn from "../../components/SpacedOneColumn";
+import { Player } from "../../types";
 
 export function HealthTracker() {
   const {
@@ -35,10 +40,20 @@ export function HealthTracker() {
     value: addNewPlayerModalIsOpen,
   } = useToggle();
 
+  const {
+    disable: closeRemovePlayerModal,
+    enable: openRemovePlayerModal,
+    value: removePlayerModalIsOpen,
+  } = useToggle();
+
   const { useDefaultTheme } = useThemeContext();
   useEffect(useDefaultTheme, [useDefaultTheme]);
 
-  const { players, isEmpty: noExistingTeams } = usePlayerTrackerContext();
+  const {
+    players,
+    isEmpty: noExistingTeams,
+    removePlayer,
+  } = usePlayerTrackerContext();
   const [selectedPlayerId, setSelectedPlayerId] = useState<string | null>(
     noExistingTeams ? null : players[0].id
   );
@@ -63,6 +78,11 @@ export function HealthTracker() {
     return getFactionBanner(factionSlug);
   }, [selectedPlayer]);
 
+  const handleRemovePlayer = (player?: Player) => {
+    if (player) removePlayer(player);
+    closeRemovePlayerModal();
+  };
+
   return (
     <PageWrapper>
       <PageMaxWithContainer>
@@ -75,6 +95,33 @@ export function HealthTracker() {
           {addNewPlayerModalIsOpen && (
             <Modal headless>
               <AddEditPlayer handleAfterSubmit={closeAddNewPlayerModal} />
+            </Modal>
+          )}
+
+          {/**
+           *
+           * CONFIRM REMOVE PLAYER MODAL
+           *
+           */}
+          {removePlayerModalIsOpen && (
+            <Modal
+              headless
+              fillHeight={false}
+              handleOnClose={closeRemovePlayerModal}
+            >
+              <SpacedOneColumn>
+                <h3>Remove player {selectedPlayer?.name}?</h3>
+                <p>
+                  Are you sure you want to remove player {selectedPlayer?.name}{" "}
+                  from the game?
+                </p>
+                <p>This action cannot be undone.</p>
+                <RemoveButton
+                  onClick={() => handleRemovePlayer(selectedPlayer)}
+                >
+                  Remove
+                </RemoveButton>
+              </SpacedOneColumn>
             </Modal>
           )}
 
@@ -110,7 +157,6 @@ export function HealthTracker() {
            * SHOW BOARD
            *
            */}
-
           {!noExistingTeams && (
             <>
               <PlayersGridWrapper>
@@ -146,6 +192,10 @@ export function HealthTracker() {
                   data-id="HealthSlidersWrapper"
                   backgroundsrc={FactionBackgroundSrc}
                 >
+                  <RemovePlayerIcon
+                    backgroundsrc={Skull}
+                    onClick={openRemovePlayerModal}
+                  />
                   {FactionIconSrc && FactionBannerSrc && (
                     <FactionBanner
                       iconsrc={FactionIconSrc}
