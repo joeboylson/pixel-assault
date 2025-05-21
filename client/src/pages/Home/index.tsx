@@ -9,7 +9,7 @@ import { HomeSection } from "../../layouts/HomeSection";
 /**
  * Banner GIF
  */
-import BannerGif from "../../assets/images/homepage/BannerArtAnimation.gif";
+import BannerGif from "../../assets/images/homepage/BannerArtAnimation_0_75.gif";
 
 /**
  * Divisors
@@ -22,13 +22,17 @@ import Divisors_Silicon from "../../assets/images/homepage/Divisors_Silicon.png"
 /**
  * Section Images
  */
-
 import Plains_Commander from "../../assets/images/homepage/Plains Commander.png";
 import Mountains_Tank_Commander from "../../assets/images/homepage/Mountains Tank Commander.png";
 import Silicon_Special_Soldiers from "../../assets/images/homepage/Silicon Special Soldiers.png";
+import { LayoutValues } from "../../enums";
 
-const StyledBannerGif = styled.img`
-  display: block;
+const StyledBannerGif = styled.div<{ backgroundsrc: string }>`
+  background-image: url("${(props) => props.backgroundsrc}");
+  background-position: center top;
+  background-size: cover;
+  height: calc(100vh - ${LayoutValues.HEADER_HEIGHT}px);
+  width: 100vw;
 `;
 
 const SectionImage = styled.img`
@@ -47,7 +51,7 @@ export function Home() {
 
   return (
     <PageWrapper nopadding>
-      <StyledBannerGif src={BannerGif} alt="" />
+      <StyledBannerGif backgroundsrc={BannerGif} />
 
       <div style={{ width: "100vw" }}>
         <HomeSection color="#040917" image={Divisors_Plains}>
